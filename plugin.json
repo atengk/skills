@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ateng-skills",
+  "version": "1.0.0",
+  "description": "Ateng 的跨平台通用研发效能与技能增强插件库，提供工业级技术文档编排等能力。",
+  "author": {
+    "name": "Ateng",
+    "url": "https://github.com/atengk"
+  },
+  "homepage": "https://github.com/atengk/skills",
+  "repository": "https://github.com/atengk/skills",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "agent-plugin",
+    "engineering",
+    "tech-doc",
+    "rfc",
+    "architecture"
+  ]
+}

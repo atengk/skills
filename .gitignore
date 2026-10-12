@@ -1,0 +1,20 @@
+# OS & Editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node / Scratch
+node_modules/
+scratch/
+tmp/
+
+# Local Agent Workspace (Untracked)
+.agents/
+.agent/
