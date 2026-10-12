@@ -65,6 +65,22 @@
     "frontend",
     "component-architecture",
     "accessibility",
-    "a11y"
+    "a11y",
+    "readme",
+    "project-portal",
+    "quickstart",
+    "contributing",
+    "conventional-commits",
+    "git-workflow",
+    "changelog",
+    "keep-a-changelog",
+    "semver",
+    "runbook",
+    "sre",
+    "incident-response",
+    "agents-rules",
+    "prompt-governance",
+    "ci-cd",
+    "github-actions"
   ]
 }
