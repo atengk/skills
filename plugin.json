@@ -81,6 +81,20 @@
     "agents-rules",
     "prompt-governance",
     "ci-cd",
-    "github-actions"
+    "github-actions",
+    "e2e",
+    "playwright",
+    "user-journey",
+    "observability",
+    "opentelemetry",
+    "postmortem",
+    "five-whys",
+    "retro",
+    "release-management",
+    "spec-archiving",
+    "context-compaction",
+    "handoff",
+    "workflow-orchestrator",
+    "developer-assistant"
   ]
 }
