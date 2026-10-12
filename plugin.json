@@ -44,6 +44,27 @@
     "adr",
     "madr",
     "refactoring",
-    "deep-module-design"
+    "deep-module-design",
+    "worktree",
+    "git-worktree",
+    "physical-isolation",
+    "prototype",
+    "throwaway-prototype",
+    "sandbox",
+    "code-simplification",
+    "guard-clauses",
+    "clean-code",
+    "security",
+    "owasp",
+    "defensive-programming",
+    "zero-secret",
+    "performance",
+    "web-vitals",
+    "sql-tuning",
+    "caching",
+    "frontend",
+    "component-architecture",
+    "accessibility",
+    "a11y"
   ]
 }
