@@ -16,6 +16,18 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+# 确保在任何环境（特别是 Windows cp1252 CI 容器）下标准输出与错误流统一以 UTF-8 编码，防止 UnicodeEncodeError
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+if hasattr(sys.stderr, "reconfigure"):
+    try:
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 
 # ==============================================================================
 # 1. 终端视觉渲染引擎 (Console Engine)
@@ -63,6 +75,27 @@ class Console:
             self._enable_windows_vt_mode()
 
     @staticmethod
+    def _print(text: str = "") -> None:
+        """安全打印字符串，防范底层 charmap 编码异常"""
+        try:
+            print(text)
+        except UnicodeEncodeError:
+            encoding = getattr(sys.stdout, "encoding", "utf-8") or "utf-8"
+            safe_text = text.encode(encoding, errors="replace").decode(encoding)
+            print(safe_text)
+
+    @staticmethod
+    def display_width(text: str) -> int:
+        """估算包含东亚全角字符的字符串在终端中占用的物理列数"""
+        total = 0
+        for char in str(text):
+            if ord(char) > 127:
+                total += 2
+            else:
+                total += 1
+        return total
+
+    @staticmethod
     def _detect_color_support() -> bool:
         """探测当前运行环境是否支持颜色"""
         # 若设置了 NO_COLOR 环境变量，则遵循规范禁用颜色
@@ -102,36 +135,36 @@ class Console:
     def success(self, message: str) -> None:
         """打印成功提示"""
         badge = self.style(" ✔ 成功 ", self.BOLD, self.WHITE, self.BG_GREEN) if self.color_enabled else "[✔ 成功]"
-        print(f"{badge} {message}")
+        self._print(f"{badge} {message}")
 
     def error(self, message: str) -> None:
         """打印错误提示"""
         badge = self.style(" ✖ 失败 ", self.BOLD, self.WHITE, self.BG_RED) if self.color_enabled else "[✖ 失败]"
-        print(f"{badge} {message}")
+        self._print(f"{badge} {message}")
 
     def warn(self, message: str) -> None:
         """打印警告提示"""
         badge = self.style(" ⚠ 警告 ", self.BOLD, self.BLACK, self.BG_YELLOW) if self.color_enabled else "[⚠ 警告]"
-        print(f"{badge} {message}")
+        self._print(f"{badge} {message}")
 
     def info(self, message: str) -> None:
         """打印信息提示"""
         badge = self.style(" ℹ 信息 ", self.BOLD, self.WHITE, self.BG_BLUE) if self.color_enabled else "[ℹ 信息]"
-        print(f"{badge} {message}")
+        self._print(f"{badge} {message}")
 
     def rule(self, title: str = "", char: str = "─", width: int = 70) -> None:
         """打印水平分割线"""
         if not title:
             line = char * width
-            print(self.style(line, self.DIM))
+            self._print(self.style(line, self.DIM))
             return
 
         formatted_title = f" {title} "
-        title_len = len(title.encode("gbk", errors="ignore"))  # 估算 CJK 字符宽度
+        title_len = self.display_width(title)
         left_len = max(2, (width - title_len) // 2)
         right_len = max(2, width - title_len - left_len)
         line = f"{char * left_len}{formatted_title}{char * right_len}"
-        print(self.style(line, self.BOLD, self.CYAN))
+        self._print(self.style(line, self.BOLD, self.CYAN))
 
     def table(self, headers: List[str], rows: List[List[str]]) -> None:
         """打印自适应对齐的终端文本表格
@@ -145,39 +178,28 @@ class Console:
 
         all_rows = [headers] + rows
 
-        def display_width(text: str) -> int:
-            """估算包含东亚全角字符的字符串在终端中占用的物理列数"""
-            total = 0
-            for char in str(text):
-                # 简单判定 CJK 范围
-                if ord(char) > 127:
-                    total += 2
-                else:
-                    total += 1
-            return total
-
         # 计算每列的最大物理宽度
         col_widths = [0] * len(headers)
         for row in all_rows:
             for idx, cell in enumerate(row):
                 if idx < len(col_widths):
-                    col_widths[idx] = max(col_widths[idx], display_width(str(cell)))
+                    col_widths[idx] = max(col_widths[idx], self.display_width(str(cell)))
 
         # 生成边框辅助函数
         def pad_cell(text: str, target_width: int) -> str:
-            pad_size = max(0, target_width - display_width(text))
+            pad_size = max(0, target_width - self.display_width(text))
             return str(text) + (" " * pad_size)
 
         sep_line = "┌" + "┬".join("─" * (w + 2) for w in col_widths) + "┐"
         header_sep = "├" + "┼".join("─" * (w + 2) for w in col_widths) + "┤"
         bottom_line = "└" + "┴".join("─" * (w + 2) for w in col_widths) + "┘"
 
-        print(self.style(sep_line, self.DIM))
+        self._print(self.style(sep_line, self.DIM))
 
         # 表头
         header_cells = [f" {pad_cell(h, col_widths[i])} " for i, h in enumerate(headers)]
-        print("│" + "│".join(self.style(cell, self.BOLD) for cell in header_cells) + "│")
-        print(self.style(header_sep, self.DIM))
+        self._print("│" + "│".join(self.style(cell, self.BOLD) for cell in header_cells) + "│")
+        self._print(self.style(header_sep, self.DIM))
 
         # 内容行
         for row in rows:
@@ -185,9 +207,9 @@ class Console:
             for i, cell in enumerate(row):
                 if i < len(col_widths):
                     row_cells.append(f" {pad_cell(cell, col_widths[i])} ")
-            print("│" + "│".join(row_cells) + "│")
+            self._print("│" + "│".join(row_cells) + "│")
 
-        print(self.style(bottom_line, self.DIM))
+        self._print(self.style(bottom_line, self.DIM))
 
 
 # 模块全局默认单例控制台

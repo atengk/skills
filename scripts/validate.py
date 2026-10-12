@@ -22,6 +22,11 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
+# 确保无论从任何工作目录调用或作为模块导入，scripts/ 内部私有模块均能被正确解析
+_scripts_dir = str(Path(__file__).resolve().parent)
+if _scripts_dir not in sys.path:
+    sys.path.insert(0, _scripts_dir)
+
 # 引入底层私有公共库
 from _common import (
     Console,
