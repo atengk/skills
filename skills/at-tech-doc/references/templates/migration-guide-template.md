@@ -51,7 +51,7 @@ sequenceDiagram
     activate OldDB
     OldDB-->>App: 写入成功
     deactivate OldDB
-    
+
     par 异步双写 / CDC 捕获
         App->>MQ: 发送异步写入事件
         MQ->>NewDB: 消费写入新库 (幂等 Upsert)
@@ -60,7 +60,7 @@ sequenceDiagram
         CheckTask->>NewDB: 比对增量数据
         CheckTask-->>CheckTask: 差异记录报警
     end
-    
+
     App-->>Client: 响应业务处理成功
 ```
 

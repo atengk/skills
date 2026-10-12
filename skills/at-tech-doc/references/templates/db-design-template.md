@@ -163,6 +163,6 @@ CREATE TABLE `orders` (
 | 核查对象 (引擎/类型/特性) | 官方基准事实 (Ground Truth) | 对应权威依据 (Tier 1 链接) | 核验状态 |
 | :--- | :--- | :--- | :--- |
 | **字符集标准** | MySQL 8.0 默认且推荐 `utf8mb4`，支持完整 Emoji 存储 | [MySQL Docs](https://...) | 已核实官方规范 |
-| **自增主键类型** | 生产核心大表强制采用 `BIGINT UNSIGNED` (8字节) | [MySQL Data Types](https://...) | 已核实避免整型溢出 |
+| **自增主键类型** | 生产核心大表强制采用 `BIGINT UNSIGNED` (8 字节) | [MySQL Data Types](https://...) | 已核实避免整型溢出 |
 | **JSON/虚拟列索引** | MySQL 8.0 支持多值索引 (Multi-Valued Index) 索引 JSON 数组 | [MySQL JSON Docs](https://...) | 已核实官方高级特性 |
 

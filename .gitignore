@@ -4,18 +4,22 @@ Thumbs.db
 Desktop.ini
 *.log
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
 
-# Node / Scratch
+# Node / Scratch / Dist
 node_modules/
 scratch/
 tmp/
+dist/
 
-# Local Developer & Agent Workspace (Untracked)
+# Local Developer Workspace (Untracked)
 .local/
-.agents/
-.agent/

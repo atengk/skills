@@ -53,7 +53,7 @@
 ```mermaid
 flowchart TD
     Client["业务调用方 (Client Application)"]
-    
+
     subgraph OptionA["方案 A: [候选方案 1]"]
         A_Arch["单体/自建集群"]
         A_Pros["优势: 简单直接、改造成本低"]

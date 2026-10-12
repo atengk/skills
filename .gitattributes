@@ -1,0 +1,17 @@
+# 统一文本文件换行符为 LF，杜绝跨平台 Git Diff 漂移
+* text=auto eol=lf
+
+# 源码、脚本与文档显式声明为文本
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# 二进制制品与图片资产
+*.skill binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary

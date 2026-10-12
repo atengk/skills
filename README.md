@@ -1,5 +1,10 @@
 # Ateng Skills
 
+[![CI](https://github.com/atengk/skills/actions/workflows/ci.yml/badge.svg)](https://github.com/atengk/skills/actions)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Open Agent Skills](https://img.shields.io/badge/Standard-Open_Agent_Skills-success.svg)](https://agent-plugins.org)
+
 专注研发效能与架构设计的实用 AI Agent 技能与插件库。
 
 开箱即用，让你的 AI 编程助手（Cursor、Claude Code、Antigravity、Codex、Windsurf 等）具备工业级架构设计、API 契约编写、数据库建模与技术方案交付能力。
@@ -72,9 +77,15 @@ git clone https://github.com/atengk/skills.git ~/.gemini/config/plugins/ateng-sk
 
 ```text
 skills/
+├── .agents/                  # 国际开放 Agent 研发工程规范与跨生态准则
+├── .github/                  # GitHub Actions CI 自动化流水线
 ├── plugin.json               # 插件元数据描述清单
-├── scripts/                  # 自动化工程工具
-│   └── validate.py           # 零依赖质量门禁校验器
+├── scripts/                  # 自动化工程工具链 (零外部依赖)
+│   ├── _common.py            # 底层终端引擎、YAML 状态机与 Markdown 扫描器
+│   ├── init_skill.py         # 新技能脚手架生成器
+│   ├── format_skills.py      # 盘古之白与排版自动修复器 (支持 --check)
+│   ├── validate.py           # DoD 质量门禁校验器
+│   └── package_skill.py      # 单技能打包导出器 (.skill 制品)
 ├── skills/                   # 核心技能集合
 │   └── at-tech-doc/          # 技术文档与架构设计生成器
 │       ├── SKILL.md          # 核心编排指令入口
@@ -84,15 +95,32 @@ skills/
 
 ---
 
-## ➕ 如何新增技能 (Adding New Skills)
+## ➕ 技能开发与维护工具链 (Developer Toolchain)
 
-1. **新建子目录**：在 `skills/` 下新建 `at-<skill-name>` 目录；
-2. **编写核心入口**：创建 `SKILL.md`，头部声明 `name` 与 `description`（说明核心功能与第三人称触发时机），并在 `references/` 下组织专属知识或模板；
-3. **运行门禁质检**：
+本仓库内置全套基于 Python 标准库的零依赖工程工具：
+
+1. **一键生成新技能脚手架**：
+   ```bash
+   python scripts/init_skill.py at-<skill-name>
+   ```
+   自动生成微内核物理拓扑、合规 Frontmatter 模板与 `references/` 骨架文件。
+2. **编写核心指令与参考资料**：在 `SKILL.md` 编写核心状态机编排，在 `references/` 下组织协议与模板。
+3. **一键格式化与排版修复 (盘古之白)**：
+   ```bash
+   python scripts/format_skills.py
+   # 仅检查不修改（适用于 CI 门禁）：python scripts/format_skills.py --check
+   ```
+   自动为中英文、数字边界补齐半角空格并优化 Markdown 排版。
+4. **运行质量门禁全量自检**：
    ```bash
    python scripts/validate.py
    ```
-   自动核验 Frontmatter 格式、相对路径死链与排版规范。
+   严格核验 Frontmatter 格式、相对路径死链、目录纯粹性与绝对路径安全。
+5. **打包导出独立 `.skill` 制品 (可选)**：
+   ```bash
+   python scripts/package_skill.py skills/at-<skill-name>
+   # 或批量打包全库：python scripts/package_skill.py --all
+   ```
 
 ---
 
