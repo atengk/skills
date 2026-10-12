@@ -1,51 +1,46 @@
 # Ateng Skills
 
-跨生态通用的 AI Agent 研发效能与技术架构设计技能库 (Universal Agent Skills & Plugins)。
+专注研发效能与架构设计的实用 AI Agent 技能与插件库。
 
-遵循国际开放 **[Agent Skills Specification](https://agent-plugins.org)** 与 **[Agent Plugins Specification](https://agent-plugins.org/schemas/1.0.0/plugin.schema.json)** 标准。坚决杜绝任何厂商私有锁定（Zero Vendor Lock-in），原生通用支持 **Claude Code / Desktop、Cursor、Codex、Windsurf、Antigravity、OpenClaw / Vercel Skills** 等全套主流 Agent 生态。
-
----
-
-## 🌟 核心设计原则 (Design Principles)
-
-- **自包含微内核 (Self-Contained Microkernel)**：每个技能目录均为物理自闭环的原子单元。所有指导协议、模板、手册均内聚于各自私有 `references/` 中，零外部路径隐式依赖。
-- **开放中立标准 (Vendor-Neutral by Design)**：代码与文档纯粹采用标准 GitHub Flavored Markdown 与 Mermaid 语法，杜绝专有宿主 API 绑定。
-- **双重消费形态 (Dual Consumption Modes)**：既可作为符合 `agent-plugins.org` 规范的完整插件包整体分发，又支持单摘任意单个技能直接拷贝进项目使用。
+开箱即用，让你的 AI 编程助手（Cursor、Claude Code、Antigravity、Codex、Windsurf 等）具备工业级架构设计、API 契约编写、数据库建模与技术方案交付能力。
 
 ---
 
-## 📦 项目结构 (Repository Structure)
+## 🛠️ 技能清单 (Skills Catalog)
 
-```text
-skills/
-├── plugin.json               # 开放插件元数据清单 (遵循 agent-plugins.org 标准)
-├── skills/                   # 核心技能集合 (自包含微内核)
-│   └── at-tech-doc/          # 工业级技术文档编排生成器
-│       ├── SKILL.md          # 技能主指令文件 (YAML Frontmatter + 指南)
-│       └── references/       # 渐进式知识地图、执行协议与标准化模板
-│           ├── formatting-rules.md
-│           ├── protocols/
-│           └── templates/
-└── README.md
-```
+### 📌 `at-tech-doc`：工业级技术文档与架构设计生成器
+
+将业务构想或现有代码库转化为具备生产落地深度的交付级技术文档。支持逆向工程与前瞻设计，内置自适应三层交付模型与真实性核验闸门。
+
+- **斜杠命令**：`/at-tech-doc`
+- **支持场景与模板**：
+  - 📐 **系统/特性设计方案 (RFC)**：背景边界、选型对比、架构拓扑、详细设计、发布与回滚
+  - 🔌 **API 接口契约规范 (API Spec)**：RESTful 规范、请求响应报文、错误码、幂等与安全防护
+  - 🗄️ **数据库设计与数据字典 (DB Design)**：容量预估、ER 关系、物理数据字典、索引规划
+  - 🔬 **技术选型调研报告 (Tech Spike)**：评估准入、候选方案对比、原型压测实测、加权决策矩阵
+  - 📋 **架构决策记录 (ADR)**：决策上下文、方案权衡、产生后果与影响
+  - 🚨 **运维部署与应急手册 (Ops Guide)**：服务依赖、部署排错、高频告警处置 SOP、服务降级
+  - 🔄 **割接迁移方案 (Migration Guide)**：割接演练、双写平滑过渡、数据对齐核对、灰度切流
+  - 🧪 **联调契约与压测方案 (Test Plan)**：环境依赖、边界测试用例、全链路压测指标、性能瓶颈排查
+
+#### 💬 典型使用示例
+
+只需在你的 AI 客户端输入自然语言即可触发：
+
+> - *“帮我设计一个订单分布式幂等防重的 API 接口契约”*
+> - *“为用户中心微服务重构编写一份特性设计方案 (RFC)”*
+> - *“对比 Redis 与本地缓存构建二级缓存体系，写一份技术选型 Spike 报告”*
+> - *“分析现有订单模块代码，逆向生成数据库设计与数据字典”*
 
 ---
 
-## 🛠️ 收录技能清单 (Skills Catalog)
+## 🚀 快速上手与集成指南 (Getting Started)
 
-| 技能名称 (Slash Command) | 标识符 / 目录 | 核心职责说明 |
-| :--- | :--- | :--- |
-| `/at-tech-doc` | `skills/at-tech-doc` | 生成工业级技术方案（RFC）、API 接口契约、ADR 架构决策、运维应急手册、技术调研 Spike、数据库设计与字典、割接方案等，内置三层自适应交付模型与真理核验闸门。 |
+本仓库的技能均为自闭环结构，你可以根据使用习惯自由选择以下任意方式：
 
-> **命名空间规范**：本项目所有技能统一遵循 `at-` 轻量前缀命名（取自 Ateng），彻底防止与社区公共技能发生同名冲突与静默覆盖。在支持斜杠命令的客户端中输入 `/at-` 即可快速聚合唤出专属能力。
+### 方式 1：单独在任意项目中引入单个技能（推荐）
 
----
-
-## 🚀 跨生态接入与使用指南 (Universal Usage)
-
-### 1. 单独提取单个技能使用 (推荐，任意项目通用)
-
-无需安装整个插件包，直接将所需技能拷贝至任何工程中：
+直接将所需技能拷贝至目标项目的 Agent 技能目录即可生效：
 
 ```bash
 # 拷贝至当前项目的通用 Agent 技能目录
@@ -53,42 +48,51 @@ mkdir -p .agents/skills
 cp -r path/to/skills/at-tech-doc .agents/skills/
 ```
 
-- **兼容客户端**：Cursor、Claude Code、Windsurf、Codex、OpenClaw。
-- **即刻生效**：由于技能是“自包含微内核”，放入 `.agents/skills/` 后，你的 AI 编码助手将自动识别并在需要时激活它。
+- **适用客户端**：Cursor、Claude Code、Codex、Windsurf 等；
+- **即刻生效**：放置后，AI 助手在处理相关任务时会自动识别并按需激活。
 
-### 2. 通过开放 Skills CLI 动态安装
+### 方式 2：通过 Agent Skills CLI 一键添加
 
 ```bash
-# 使用标准 Agent Skills CLI 从 GitHub 直接安装单个技能
+# 从 GitHub 仓库直接安装单个技能
 npx skills add atengk/skills/skills/at-tech-doc
 ```
 
-### 3. 作为完整插件包整体安装 (Antigravity / 支持 Agent Plugins 的环境)
+### 方式 3：作为完整插件集成 (Antigravity)
 
-适用于需要一键批量管理全套技能、享受插件级生命周期控制的环境：
-- 将本项目放置或克隆到对应环境的插件扫描目录（如 `~/.gemini/config/plugins/ateng-skills`）。
-- 运行时将自动加载插件所暴露的全部子技能。
+将本项目克隆至 Antigravity 插件目录，享受插件级生命周期管理：
+
+```bash
+git clone https://github.com/atengk/skills.git ~/.gemini/config/plugins/ateng-skills
+```
 
 ---
 
-## ➕ 如何增量新增技能 (Contributing New Skills)
+## 📦 项目结构 (Repository Layout)
 
-1. 在 `skills/` 下新建原子子目录，以 `at-<skill-name>` 命名：
-   ```text
-   skills/at-my-new-skill/
-   ├── SKILL.md
-   └── references/           # 放置该技能专用的模板或参考文档（可选）
-   ```
-2. 编写 `SKILL.md`，头部声明开放标准的 YAML Frontmatter：
-   ```yaml
-   ---
-   name: at-my-new-skill
-   description: 清晰陈述该技能的核心功能与第三人称触发场景（供 Agent 语义路由或用户通过 /at-my-new-skill 触发）。
-   ---
+```text
+skills/
+├── plugin.json               # 插件元数据描述清单
+├── scripts/                  # 自动化工程工具
+│   └── validate.py           # 零依赖质量门禁校验器
+├── skills/                   # 核心技能集合
+│   └── at-tech-doc/          # 技术文档与架构设计生成器
+│       ├── SKILL.md          # 核心编排指令入口
+│       └── references/       # 深度协议与标准化模板库
+└── README.md
+```
 
-   # 技能说明与操作指导正文
+---
+
+## ➕ 如何新增技能 (Adding New Skills)
+
+1. **新建子目录**：在 `skills/` 下新建 `at-<skill-name>` 目录；
+2. **编写核心入口**：创建 `SKILL.md`，头部声明 `name` 与 `description`（说明核心功能与第三人称触发时机），并在 `references/` 下组织专属知识或模板；
+3. **运行门禁质检**：
+   ```bash
+   python scripts/validate.py
    ```
-3. 遵循自包含红线：文档内互链 100% 采用相对路径（`./` 或 `../`），严禁跨技能建立文件引用。
+   自动核验 Frontmatter 格式、相对路径死链与排版规范。
 
 ---
 

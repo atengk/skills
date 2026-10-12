@@ -15,6 +15,7 @@ node_modules/
 scratch/
 tmp/
 
-# Local Agent Workspace (Untracked)
+# Local Developer & Agent Workspace (Untracked)
+.local/
 .agents/
 .agent/

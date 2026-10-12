@@ -1,6 +1,16 @@
 ---
 name: at-tech-doc
 description: 当用户需要编写或生成工业级技术文档、系统架构设计方案、特性 RFC、API 接口契约、数据库设计与数据字典、技术调研 Spike、运维应急手册、割接迁移方案或联调压测方案时使用此技能。支持基于代码库的逆向工程与正向前瞻设计，内置自适应三层交付模型（Tier 1/2/3）与跨轮次交互分批协议。
+license: Apache-2.0
+metadata:
+  author: Ateng
+  version: 1.0.0
+  tags:
+    - architecture
+    - rfc
+    - api-spec
+    - tech-doc
+  icon: document-edit
 ---
 
 # 技术文档编排与生成器 (Tech Doc Orchestrator)
