@@ -77,8 +77,8 @@ git clone https://github.com/atengk/skills.git ~/.gemini/config/plugins/ateng-sk
 
 ```text
 skills/
-├── .agents/                  # 国际开放 Agent 研发工程规范与跨生态准则
 ├── .github/                  # GitHub Actions CI 自动化流水线
+├── AGENTS.md                 # 国际开放 Agent 研发工程规范与跨生态准则
 ├── plugin.json               # 插件元数据描述清单
 ├── scripts/                  # 自动化工程工具链 (零外部依赖)
 │   ├── _common.py            # 底层终端引擎、YAML 状态机与 Markdown 扫描器

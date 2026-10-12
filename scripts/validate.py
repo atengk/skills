@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """开放 Agent 技能包与插件质量门禁自动化校验脚本。
 
-严格执行 .agents/AGENTS.md 规定的四道交付门禁：
+严格执行 AGENTS.md 规定的四道交付门禁：
 1. 技能目录纯粹性与反模式扫描（坚决杜绝多余的 README.md、CHANGELOG.md 等人类文档）
 2. SKILL.md Frontmatter 规范自检（顶层属性白名单、命名格式、意图覆盖度、长度与字符安全）
 3. 相对路径物理死链核验（检测 SKILL.md 中所有相对超链接是否物理存在）
