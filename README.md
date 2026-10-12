@@ -94,4 +94,4 @@ npx skills add atengk/skills/skills/at-tech-doc
 
 ## 📄 开源许可证 (License)
 
-本项目基于 [MIT](LICENSE) 许可证开源。
+本项目基于 [Apache-2.0](LICENSE) 许可证开源。
