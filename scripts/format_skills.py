@@ -109,31 +109,40 @@ def format_file(file_path: Path, repo_root: Path, check_only: bool = False) -> b
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="盘古之白与 Markdown 排版自动化格式化工具")
-    parser.add_argument("target", nargs="?", default="skills", help="目标路径（文件或目录，默认扫描 skills/）")
+    parser.add_argument("target", nargs="?", default=None, help="目标路径（文件或目录，默认扫描 skills/ 与 docs/）")
     parser.add_argument("--check", action="store_true", help="只读检查模式：若存在待格式化文件则报错退出（适用于 CI 门禁），不修改文件")
     args = parser.parse_args()
 
     repo_root = get_repo_root()
-    target_path = Path(args.target).resolve()
-    if not target_path.exists():
-        console.error(f"目标路径不存在: {target_path}")
-        sys.exit(1)
-
     action_label = "排版门禁检查" if args.check else "盘古之白与 Markdown 排版格式化"
     console.rule(action_label)
     changed_count = 0
     total_count = 0
 
-    if target_path.is_file():
-        if target_path.suffix.lower() == ".md":
-            total_count = 1
-            if format_file(target_path, repo_root, check_only=args.check):
-                changed_count += 1
+    if args.target:
+        target_path = Path(args.target).resolve()
+        if not target_path.exists():
+            console.error(f"目标路径不存在: {target_path}")
+            sys.exit(1)
+        scan_targets = [target_path]
     else:
-        for md_file in sorted(target_path.rglob("*.md")):
-            total_count += 1
-            if format_file(md_file, repo_root, check_only=args.check):
-                changed_count += 1
+        scan_targets = []
+        for default_dir in ["skills", "docs"]:
+            p = repo_root / default_dir
+            if p.exists():
+                scan_targets.append(p)
+
+    for item in scan_targets:
+        if item.is_file():
+            if item.suffix.lower() == ".md":
+                total_count += 1
+                if format_file(item, repo_root, check_only=args.check):
+                    changed_count += 1
+        else:
+            for md_file in sorted(item.rglob("*.md")):
+                total_count += 1
+                if format_file(md_file, repo_root, check_only=args.check):
+                    changed_count += 1
 
     print()
     if args.check:

@@ -3,7 +3,7 @@ name: at-workflow
 description: 当用户面对复杂工程任务不确定如何推进、需要全生命周期研发向导、诊断当前场景最佳技能路线或需要智能调度串联多技能时使用此技能。提供全局工作流路由协议与交互菜单模板，交付无缝衔接的端到端研发编排体验。
 disable-model-invocation: false
 disable-slash-command: false
-argument-hint: "[guide|menu|recipe|orchestrate]"
+argument-hint: "[guide|menu|recipe|help [skill]|orchestrate]"
 allowed-tools:
   - view_file
   - run_command
@@ -29,6 +29,7 @@ flowchart LR
 ## 执行流程状态机 (Execution State Machine)
 
 ### 阶段 1：研发诉求探查与意图诊断 (Intent Diagnosis)
+- 优先响应 help / help <skill> 子命令或 --help 参数，直接渲染五段式技能卡片；
 - 倾听并解析开发者提出的初始自然语言指令，识别核心业务与工程关注点；
 - 运用意图诊断决策树判定任务类型（新特性/热修/重构/规范治理/发版）；
 - 探查当前代码仓库状态、已有规范文件与 Git 分支上下文；

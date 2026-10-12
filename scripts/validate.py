@@ -169,28 +169,54 @@ def validate_skill(skill_dir: Path) -> List[str]:
 def validate_zero_absolute_paths(root: Path) -> List[str]:
     """扫描所有 Markdown 交付物，确保无任何本地绝对路径或盘符泄漏"""
     errors: List[str] = []
-    skills_dir = root / "skills"
-    if not skills_dir.exists():
+    scan_dirs = [root / "skills", root / "docs"]
+
+    for d in scan_dirs:
+        if not d.exists():
+            continue
+        for md_file in d.rglob("*.md"):
+            text = md_file.read_text(encoding="utf-8")
+            rel = md_file.relative_to(root)
+
+            # 使用 MarkdownScanner 安全屏蔽代码块，仅检测自然文本与活动链接
+            clean_text, _ = MarkdownScanner.mask_blocks(text)
+
+            # 检查活动超链接目标地址
+            link_targets = re.findall(r"\[.*?\]\((.*?)\)", clean_text)
+            for target in link_targets:
+                target_clean = target.strip().split()[0]
+                if target_clean.startswith("file:///") or re.match(r"^[a-zA-Z]:[\\/]", target_clean):
+                    errors.append(f"[{rel}] 检测到绝对路径活动链接: '{target_clean}'")
+
+            # 检查普通正文中的裸露盘符或 file:/// 协议泄漏
+            leaks = re.findall(r"(?:file:///[^\s\)\>]+|(?<![a-zA-Z0-9_])[a-zA-Z]:[\\/][a-zA-Z0-9_\-\.]+)", clean_text)
+            if leaks:
+                errors.append(f"[{rel}] 正文检测到未防护的本地绝对路径泄漏: {leaks[:3]}")
+
+    return errors
+
+
+def validate_docs_links(root: Path) -> List[str]:
+    """扫描 docs/ 目录下所有 Markdown 文档的相对超链接是否物理存在"""
+    errors: List[str] = []
+    docs_dir = root / "docs"
+    if not docs_dir.exists():
         return errors
 
-    for md_file in skills_dir.rglob("*.md"):
-        text = md_file.read_text(encoding="utf-8")
-        rel = md_file.relative_to(root)
-
-        # 使用 MarkdownScanner 安全屏蔽代码块，仅检测自然文本与活动链接
-        clean_text, _ = MarkdownScanner.mask_blocks(text)
-
-        # 检查活动超链接目标地址
-        link_targets = re.findall(r"\[.*?\]\((.*?)\)", clean_text)
-        for target in link_targets:
-            target_clean = target.strip().split()[0]
-            if target_clean.startswith("file:///") or re.match(r"^[a-zA-Z]:[\\/]", target_clean):
-                errors.append(f"[{rel}] 检测到绝对路径活动链接: '{target_clean}'")
-
-        # 检查普通正文中的裸露盘符或 file:/// 协议泄漏
-        leaks = re.findall(r"(?:file:///[^\s\)\>]+|(?<![a-zA-Z0-9_])[a-zA-Z]:[\\/][a-zA-Z0-9_\-\.]+)", clean_text)
-        if leaks:
-            errors.append(f"[{rel}] 正文检测到未防护的本地绝对路径泄漏: {leaks[:3]}")
+    for md_file in docs_dir.rglob("*.md"):
+        content = md_file.read_text(encoding="utf-8")
+        links = MarkdownScanner.extract_links(content)
+        for link_info in links:
+            raw_url = link_info["url"]
+            if raw_url.startswith(("http://", "https://", "mailto:", "#")):
+                continue
+            clean_link = raw_url.split("#")[0].strip()
+            if not clean_link:
+                continue
+            target_path = (md_file.parent / clean_link).resolve()
+            if not target_path.exists():
+                rel = md_file.relative_to(root)
+                errors.append(f"[{rel}] 第 {link_info['line']} 行发现悬空死链: '{raw_url}' -> 物理文件不存在")
 
     return errors
 
@@ -227,6 +253,12 @@ def main() -> None:
     # 门禁 4：扫描零绝对路径与物理盘符泄漏
     path_errs = validate_zero_absolute_paths(root)
     all_errors.extend(path_errs)
+
+    # 门禁 5：校验 docs/ 知识文档死链
+    doc_link_errs = validate_docs_links(root)
+    all_errors.extend(doc_link_errs)
+    if not doc_link_errs:
+        console.info("docs/ 目录知识文档死链校验通过 (0 处死链)")
 
     print()
     if all_errors:

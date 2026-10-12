@@ -67,3 +67,46 @@ flowchart LR
 #### 🎯 当前步骤目标：制定增量变更规范 (Delta Spec)
 正在根据澄清结果编写 `specs/changes/005-feature/spec.md`，重点定义 API 契约与数据模型变更...
 ```
+
+---
+
+## 3. 全局技能帮助索引卡片模板 (/at-workflow help)
+
+当开发者输入 `/at-workflow help` 时，Agent 在会话中渲染全景索引卡片：
+
+```markdown
+### 📚 工业级 AI Agent 软件工程技能库全景索引 (Skills Directory)
+
+本技能库提供 31 项微内核技能，覆盖软件研发全生命周期：
+
+- **第一层：思考、设计与架构基石 (Design Foundations)**
+  `at-assess` · `at-glossary` · `at-constitution` · `at-api-design` · `at-adr` · `at-refactor` · `at-tech-doc`
+- **第二层：核心主干闭环 (Core Delivery Loop)**
+  `at-grill` · `at-spec` · `at-plan` · `at-tdd` · `at-review` · `at-diagnose`
+- **第三层：物理隔离、全栈质效与可观测 (Quality & Isolation)**
+  `at-worktree` · `at-prototype` · `at-simplify` · `at-security` · `at-performance` · `at-frontend` · `at-e2e` · `at-observability` · `at-retro`
+- **第四层：资产门户、发版与总控 (Portal & Orchestration)**
+  `at-workflow` · `at-readme` · `at-contributing` · `at-changelog` · `at-runbook` · `at-rules` · `at-ci` · `at-release` · `at-handoff`
+
+💡 **快速查询提示**：输入 `/at-workflow help <技能名>`（如 `/at-workflow help at-tdd`）查看指定技能的详细卡片契约！
+```
+
+---
+
+## 4. 单技能五段式帮助卡片模板 (/at-workflow help <skill-name>)
+
+当开发者输入 `/at-workflow help <skill-name>` 或对任意技能使用 `--help` 参数时，Agent 输出标准化卡片：
+
+```markdown
+### 📌 [at-tdd] 测试驱动开发与坏味道消除技能
+
+1. **核心定位**：践行严密红绿重构三步循环（Red-Green-Refactor），编写可靠业务实现并根除变异测试坏味道。
+2. **触发场景**：编写单元测试、新功能 TDD 开发、修复缺陷编写复现用例、提高分支覆盖率、重构消除异味。
+3. **执行状态机**：
+   - 步骤 1：先写红灯测试（Red）并执行验证失败；
+   - 步骤 2：编写最小足量代码使测试转为绿灯（Green）；
+   - 步骤 3：重构优化设计并消除坏味道（Refactor）。
+4. **交付物契约**：业务源码文件 + 100% 运行通过的单元测试类，无假桩 Mock，零破坏性变更。
+5. **配套手册**：[at-tdd 伴随使用手册](../../../docs/skills/at-tdd.md)
+```
+
