@@ -1,6 +1,6 @@
 ---
 name: at-tdd
-description: 当用户需要通过测试驱动开发（TDD）实现新功能、修复缺陷、实施红-绿-重构循环、拦截假通过测试或执行突变检验时使用此技能。提供未测先写立即删代码铁律、测试先行红灯验证、最小实现绿灯与突变敏感度反思，交付生产级健壮源码与自验证测试套件。
+description: 当用户需要通过测试驱动开发（TDD）实现新功能、修复缺陷、实施红-绿-重构循环、拦截假通过测试或执行突变检验时使用此技能。提供存量代码防误删保护红线、三级测试成熟度自适应、测试先行红灯验证、最小实现绿灯与突变敏感度反思，交付生产级健壮源码与自验证测试套件。
 disable-model-invocation: true
 disable-slash-command: false
 argument-hint: "[red|green|refactor|mutation]"
@@ -18,12 +18,12 @@ metadata:
 
 # 测试驱动开发编排器 (Test-Driven Development Orchestrator)
 
-将原子任务与业务契约转化为严格遵循“红 -> 绿 -> 重构”纪律的高质量源码与测试资产。作为轻量化状态机运行，强制执行“未测先写立即删代码”铁律，并在绿灯后嵌入突变检验（Mutation Testing）反思，根除假通过测试与虚假覆盖率。
+将原子任务与业务契约转化为严格遵循“红 -> 绿 -> 重构”纪律的高质量源码与测试资产。作为轻量化状态机运行，坚守存量代码防误删保护红线，依据项目三级测试成熟度自适应降级，并在绿灯后嵌入突变检验（Mutation Testing）反思，根除假通过测试与虚假覆盖率。
 
 ## 渐进式知识地图 (Progressive Disclosure Map)
 
 所有测试执行协议、突变反思机制与反模式清单均存放于对应目录：
-- **红绿重构执行协议**：[tdd-red-green-protocol.md](references/protocols/tdd-red-green-protocol.md)（删代码铁律、公开接缝定位、垂直切片与最小实现准则）
+- **红绿重构执行协议**：[tdd-red-green-protocol.md](references/protocols/tdd-red-green-protocol.md)（防误删红线、三级测试成熟度自适应、公开接缝定位、垂直切片与最小实现准则）
 - **突变检验反思协议**：[mutation-testing-protocol.md](references/protocols/mutation-testing-protocol.md)（突变杀死率、四大经典突变算子与思维实验突变法）
 - **单测反模式拦截清单**：[testing-anti-patterns.md](references/anti-patterns/testing-anti-patterns.md)（重言式测试、假通过盲目绿灯与脆弱时序拦截）
 
@@ -31,31 +31,31 @@ metadata:
 
 ## 编排生命周期 (Synthesis Lifecycle)
 
-### 阶段 1：公开接缝锁定与红灯测试先行 (Red Phase & Seam Locking)
+### 阶段 1：成熟度探查、接缝锁定与红灯先行 (Maturity Probe & Red Phase)
 
-1. **公开接缝 (Public Seam) 严格限定**：
-   - 识别当前切片的公开接缝（API 端点、Service 接口公共方法）；
-   - **接缝保护红线**：严禁直接测试私有方法（Private Methods），严禁通过反射穿透私有字段；
-   - 检查任务是否涉及存量代码，若未测先写了业务代码，**立即强制物理删除**！
-2. **编写红灯用例 (RED)**：
-   - 依据前序契约或原子微任务编写单个公开接口测试用例；
-   - 遵循 Given-When-Then 结构，期望值必须来自独立的权威真理，杜绝重言式自我计算；
-   - 参照 [testing-anti-patterns.md](references/anti-patterns/testing-anti-patterns.md) 拦截盲目通过与无断言坏味道；
-   - 确保测试夹具环境完全隔离，严禁污染共享静态变量或既有数据库数据。
-3. **真实运行测试命令**：
-   - 在终端实际运行单测指令；**多模块中必须使用模块裁剪参数执行（如 `-pl` / `--filter`），严禁 `cd` 切换目录或裸跑全工程**；
+1. **测试成熟度梯队探查 (Test Maturity Tiers)**：
+   - 探查当前项目测试基础设施，依据 [tdd-red-green-protocol.md](references/protocols/tdd-red-green-protocol.md) 自适应匹配策略：
+     - **Level 1 (完备单测工程)**：标准单测红绿循环与突变反思；
+     - **Level 2 (集成/慢速测试工程)**：模块级轻量测试桩与接口级契约断言；
+     - **Level 3 (无单测遗留工程)**：特征测试探针、最小 main 验证或脚本化请求（cURL / 静态走查），严禁因缺乏单测陷入无限卡死。
+2. **公开接缝 (Public Seam) 与防误删红线**：
+   - 识别当前切片的公开接缝（API 端点、Service 接口公共方法），严禁测试私有方法或通过反射穿透；
+   - **存量代码防误删保护红线**：修改存量工程时，Agent 严禁未经授权物理删除既有代码或已编写的功能实现；任何破坏性清理必须经过人类显式授权。
+3. **编写红灯用例并真实执行验证**：
+   - 依据当前成熟度梯队编写测试用例或验证探针，遵循 Given-When-Then 结构与权威真理断言；
+   - 在终端实际运行测试验证指令（多模块中使用模块裁剪参数如 `-pl` / `--filter`，严禁 `cd` 切换目录）；
    - 必须在控制台真实见证红灯（Failure），并确认失败原因确实是“能力缺失”，而非语法导入或编译错误。
 
 ### 阶段 2：克制编码与最小实现绿灯 (Green Phase & Minimal Implementation)
 
 依据 [tdd-red-green-protocol.md](references/protocols/tdd-red-green-protocol.md) 推进绿灯：
 1. **编写最小实现代码**：
-   - 只编写刚好足以让该红灯单测通过的生产代码；
+   - 只编写刚好足以让该红灯单测或验证探针通过的生产代码；
    - 坚决杜绝过度设计、猜测性扩展参数或提前编写未来分支；
    - 保持克制，优先返回直接满足断言的紧凑实现。
 2. **重新运行验证命令**：
-   - 执行单测指令，亲眼见证测试状态由红变绿（Pass/Green）；
-   - 退出码必须为 0，且无任何警告或异常残留。
+   - 执行测试指令，亲眼见证测试状态由红变绿（Pass/Green）；
+   - 退出码必须为 0，且无任何警告或未捕获异常残留。
 
 ### 阶段 3：突变敏感度反思与假通过防御 (Mutation Reflection)
 
@@ -77,7 +77,4 @@ metadata:
    - 回写 `tasks.md`，将当前微任务状态由 `- [ ]` 标记为 `- [x]`；
    - 全部任务完成后，引导进入 `at-review` 开展双轴代码质量体检；
    - 若排查到意外顽固缺陷，推荐唤起 `at-diagnose` 开展系统化排错；
-   - 恪守红绿铁律，打造高韧性自验证代码资产；
-   - 正文严格遵循盘古之白排版规范，全流程杜绝本地绝对路径泄漏。
-
-
+   - 恪守测试先行纪律与防误删底线，打造高韧性自验证代码资产。

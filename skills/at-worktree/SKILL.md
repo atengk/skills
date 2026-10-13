@@ -1,6 +1,6 @@
 ---
 name: at-worktree
-description: 当用户需要利用 Git Worktree 进行物理级独立环境隔离、并发开发新特性、进行破坏性试验或切出紧急热修以防污染当前工作区时使用此技能。提供跨平台工作树创建、环境依赖初始化、测试基线绿灯核验与安全清理闭环编排，交付零污染、物理隔离且自闭环的工程工作空间。
+description: 当用户需要利用 Git Worktree 进行物理级独立环境隔离、并发开发新特性、进行破坏性试验或切出紧急热修以防污染当前工作区时使用此技能。提供环境沉重度探查与平滑分支降级、跨平台工作树创建、环境依赖初始化、测试基线核验与安全清理闭环编排，交付零污染、物理隔离且自闭环的工程工作空间。
 disable-model-invocation: true
 disable-slash-command: false
 argument-hint: "[create [branch]|clean|list]"
@@ -19,12 +19,12 @@ metadata:
 
 # Git Worktree 物理环境多任务隔离编排器 (Git Worktree Orchestrator)
 
-在物理文件系统层面构建完全独立且自闭环的 Git 工作树开发环境。作为轻量化状态机运行，支持在不干扰当前工作区未暂存修改的前提下，安全切出并行特性分支或热修任务，编排从路径决策、工作树创建、依赖与配置同步、初始测试基线核验到完工合并清理的全生命周期。
+在物理文件系统层面构建完全独立且自闭环的 Git 工作树开发环境。作为轻量化状态机运行，支持在不干扰当前工作区未暂存修改的前提下，安全切出并行特性分支或热修任务，编排从环境沉重度探查与平滑降级、路径决策、工作树创建、依赖与配置同步、初始测试基线核验到完工合并清理的全生命周期。
 
 ## 渐进式知识地图 (Progressive Disclosure Map)
 
 所有工作树隔离规约、就绪检查单与端到端案例均存放于对应目录：
-- **工作树隔离与生命周期协议**：[worktree-management-protocol.md](references/protocols/worktree-management-protocol.md)（目录拓扑、分支复用防护、环境初始化契约、清理收尾标准与跨平台避坑）
+- **工作树隔离与生命周期协议**：[worktree-management-protocol.md](references/protocols/worktree-management-protocol.md)（环境沉重度探查、平滑降级机制、目录拓扑、分支复用防护、环境初始化契约与清理收尾）
 - **基线核验与就绪检查单**：[baseline-verification-checklist.md](references/checklists/baseline-verification-checklist.md)（物理路径、配置与依赖、测试绿灯基线、清理回收自检表）
 - **工作树实战演练案例**：[sample-worktree-workflow.md](examples/sample-worktree-workflow.md)（突发热修环境隔离、基线核验、特性交付与收尾回显实战案例）
 
@@ -32,19 +32,23 @@ metadata:
 
 ## 编排生命周期 (Synthesis Lifecycle)
 
-### 阶段 1：工作区状态摸排与隔离拓扑决策 (Probe & Topology Decision)
+### 阶段 1：工作区状态摸排与环境沉重度探查 (Probe & Heaviness Check)
 
-1. **当前工作区状态探查**：
+1. **环境沉重度与风险探查 (Environmental Heaviness Probe)**：
    - 运行 `git status` 与 `git branch --show-current`，记录当前分支与未提交改动；
-   - 评估当前工作区脏改动风险，确认无需使用高风险的 `git stash`，决议采用物理工作树隔离；
-   - 探查待开发分支名称与基准提交点（默认以最新主干为基线）；
-   - 梳理目标任务所需环境变量、配置文件与端口分配需求。
-2. **同级物理路径规划**：
+   - 探查工程环境沉重度指标：
+     - **未共享巨型依赖**：是否存在庞大且无法跨工作树共享的依赖（如巨型 `node_modules`、大型虚拟环境）；
+     - **复杂子模块**：仓库是否包含嵌套 Git Submodule（`.gitmodules`），避免递归检出开销；
+     - **脏工作区状态**：当前是否存在大量未暂存或未跟踪文件；
+   - **平滑降级分支机制 (Graceful Branch Fallback)**：
+     - 若命中上述高沉重度风险，主动向开发者提示磁盘空间与 IDE 索引负载开销；
+     - 建议并一键降级为常规本地特性分支开发模式（`git checkout -b feature/<name>`），规避资源消耗；
+     - 若环境轻量或用户显式确认物理隔离，继续推进 Worktree 拓扑规划。
+2. **同级物理路径规划 (Worktree Topology)**：
    - 遵循 [worktree-management-protocol.md](references/protocols/worktree-management-protocol.md) 规约；
    - 在主仓库同级目录规划 `<repo-name>-worktrees/<branch-name>` 容器路径，杜绝内部嵌套；
    - 校验物理磁盘空间与操作系统路径限制，防范 Windows 长路径溢出；
    - 核验目标分支是否已在其他工作树被检出，防范 Git 分支并发检出冲突。
-
 
 ### 阶段 2：物理工作树创建与环境对齐 (Creation & Environment Alignment)
 
@@ -76,8 +80,4 @@ metadata:
    - 终端工作目录安全切回主仓库根目录；
    - 执行 `git worktree remove` 安全移除隔离工作树，运行 `git worktree prune` 修剪游离元数据；
    - 核验主仓库未暂存改动完好无损，确保整个生命周期零污染、零数据丢失；
-   - 成果留置于工作区供人类复核，未获用户显式指令严禁擅自合并或推送主干；
-   - 杜绝多任务上下文混杂与未暂存代码被 stash 冲刷的丢失风险；
-   - 赋能并行任务研发与破坏性实验的物理零成本快速试错；
-   - 筑牢开发环境隔离防线，守卫主干代码库的稳定与纯粹。
-
+   - 成果留置于工作区供人类复核，未获用户显式指令严禁擅自合并或推送主干。
