@@ -43,7 +43,7 @@ metadata:
    - 参照 [testing-anti-patterns.md](references/anti-patterns/testing-anti-patterns.md) 拦截盲目通过与无断言坏味道；
    - 确保测试夹具环境完全隔离，严禁污染共享静态变量或既有数据库数据。
 3. **真实运行测试命令**：
-   - 在终端实际运行单测指令；
+   - 在终端实际运行单测指令；**多模块中必须使用模块裁剪参数执行（如 `-pl` / `--filter`），严禁 `cd` 切换目录或裸跑全工程**；
    - 必须在控制台真实见证红灯（Failure），并确认失败原因确实是“能力缺失”，而非语法导入或编译错误。
 
 ### 阶段 2：克制编码与最小实现绿灯 (Green Phase & Minimal Implementation)
