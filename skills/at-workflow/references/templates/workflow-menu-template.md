@@ -1,6 +1,6 @@
 # 研发工作流交互向导与场景菜单模板 (Workflow Interactive Menu Template)
 
-本文档提供面向开发者对话界面的交互式场景向导卡片、意图诊断菜单与流程推进状态看板模板。
+本文档提供面向开发者对话界面的交互式场景向导卡片、意图诊断菜单、远程 Issue 关联卡片、阶段确认闸门与流程推进状态看板模板。
 
 ---
 
@@ -65,7 +65,7 @@ flowchart LR
 ---
 
 #### 🎯 当前步骤目标：制定增量变更规范 (Delta Spec)
-正在根据澄清结果编写 `specs/changes/005-feature/spec.md`，重点定义 API 契约与数据模型变更...
+正在根据澄清结果编写 `.specs/issue-42-order-timeout/delta.md`，重点定义 API 契约与核心不变式...
 ```
 
 ---
@@ -110,3 +110,76 @@ flowchart LR
 5. **配套手册**：[at-tdd 伴随使用手册](../../../docs/skills/at-tdd.md)
 ```
 
+---
+
+## 5. 远程 Issue 关联与锚定卡片模板
+
+当开发者输入带有 Issue 编号（如 `/at-workflow #42`）或 URL 时，Agent 输出此卡片：
+
+```markdown
+### 🔗 远程 Issue 关联就绪 (Remote Issue Binding)
+
+- **Issue 来源**：GitHub #42
+- **Issue 标题**：订单超时未支付自动取消与库存释放 (Auto-cancel Unpaid Orders)
+- **关联标签**：`enhancement` · `core-billing`
+- **工件落盘目录**：`.specs/issue-42-order-timeout/`
+- **推荐流水线**：配方 1（全新特性研发流：`at-grill` -> `at-spec` -> `at-plan` -> `at-tdd` -> `at-review`）
+
+> 💡 **操作引导**：已为您绑定特性命名空间。请回复 **“确认启动”** 或补充业务约束，Agent 将在当前会话内自动开启第一阶段需求质询！
+```
+
+---
+
+## 6. 阶段里程碑人机确认闸门卡片模板 (Stage Gate)
+
+当工作流完成某一阶段产物（如 `delta.md` 或 `tasks.md`）时，触发人机确认闸门：
+
+```markdown
+### 🚦 阶段里程碑审阅闸门：增量规格契约已生成 (Stage Gate: Spec Ready)
+
+已在工件目录生成增量规格文件：
+📄 **文件直达**：`.specs/issue-42-order-timeout/delta.md`
+
+#### 关键变更摘要：
+- **Added**：新增 `OrderTimeoutTask` 定时扫描组件与 Redis 延迟队列 Key；
+- **Modified**：`OrderService.cancelOrder()` 增加原子库存回滚事件发布；
+- **Invariants**：不可打破守恒律——订单一旦取消，锁定库存必须 100% 释放且金额不可再扣减。
+
+---
+
+> ✋ **请审阅确认**：
+> - 回复 **“通过”** 或 **“继续”**：Agent 将**直接在当前会话内内联启动下一棒 `at-plan`**（拆解微任务清单）；
+> - 若有疑问：请直接提出修改意见，Agent 将就地修正规格契约。
+```
+
+---
+
+## 7. Issue 结项回填摘要评论模板 (Issue Backfill Summary)
+
+当工作流通过全部测试与代码审查、完成结项时，输出此草案：
+
+```markdown
+### 📝 远程 Issue 结项评论草案 (Ready for Issue Backfill)
+
+```markdown
+## ✅ 需求实现与交付验收报告 (Delivery Summary)
+
+### 1. 变更范围与核心工件
+- **规格契约**：`.specs/issue-42-order-timeout/delta.md`
+- **任务清单**：`.specs/issue-42-order-timeout/tasks.md` (6/6 原子微任务全部闭环)
+- **审查报告**：`.specs/issue-42-order-timeout/review.md` (五轴健康评分 98/100, 0 Blocker)
+
+### 2. 代码实现与测试验证
+- **核心新增/修改**：
+  - `OrderTimeoutScheduler.java`：超时订单死信队列监听器
+  - `StockRollbackListener.java`：库存补偿事件幂等处理器
+- **测试验证结果**：
+  - 单元测试：`OrderTimeoutSchedulerTest` 100% 通过 (覆盖并发取消与重复消费边界)
+  - 静态门禁：无绝对路径泄漏，零明文凭据残留，通过架构宪章合规自检
+
+---
+*由 AI Agent 软件工程流水线 (ateng-skills) 自动化编排交付*
+\```
+
+> 💡 **回写提示**：您可以在终端运行 `gh issue comment 42 --body "..."`，或直接复制上述内容贴回 GitHub Issue #42 评论区完成闭环！
+```
