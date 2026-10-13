@@ -42,6 +42,10 @@ metadata:
    - **多模块跨层级标定**：若变更涉及底层非叶子公共模块（如 `*-api`、`*-common`），强制标记为 `Level: Cross-Module` 并枚举所有下游依赖子模块；
    - 检查外部依赖库版本，提前排查是否存在潜在版本冲突或破坏性变更（Breaking Changes）；
    - 若发现存量接口不兼容，必须在计划中优先设立过渡版本或双轨并存机制。
+3. **JIT 零摩擦治理自适应 (Zero-Friction JIT Adaptation)**：
+   - 探查根目录 `CONSTITUTION.md`，若存在严格遵循其架构红线；若缺失则降级至通用安全基线并给出友好建议，绝不阻断；
+   - 探查 `docs/glossary.md`，若存在严格对齐领域术语；若缺失则 JIT 逆向推断现有代码库命名（Entity、Table 等）；
+   - 持久化至 `.specs/<feature-slug>/delta.md` 时自动递归建目录。
 
 ### 阶段 2：三元差分契约精准提取 (Delta Synthesis: Added / Modified / Removed)
 

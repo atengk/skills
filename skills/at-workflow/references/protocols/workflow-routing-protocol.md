@@ -15,6 +15,7 @@
 - [7. 远程 Issue 自动化双向联动协议](#7-远程-issue-自动化双向联动协议)
 - [8. 会话内授权内联接力推进协议 (Inline Chaining)](#8-会话内授权内联接力推进协议-inline-chaining)
 - [9. 目标工程一键初始化脚手架契约 (/at-workflow init)](#9-目标工程一键初始化脚手架契约-at-workflow-init)
+- [10. JIT 零摩擦即时自适应协议 (Zero-Friction JIT Adaptation)](#10-jit-零摩擦即时自适应协议-zero-friction-jit-adaptation)
 
 ---
 
@@ -221,3 +222,21 @@ flowchart TD
 4. **生成特性执行空间与 Git 保护**：
    - 创建 `.specs/` 目录；
    - 写入 `.specs/.gitignore`，声明忽略 `**/HANDOFF.md`、`scratch/`、`**/*.tmp.md`。
+
+---
+
+## 10. JIT 零摩擦即时自适应协议 (Zero-Friction JIT Adaptation)
+
+为了避免在未初始化或轻量项目中因缺失治理文件而中断执行，下游技能必须遵守三项零摩擦即时自适应原则：
+
+### 10.1 宪章零摩擦自适应 (Constitution Adaptation)
+- **强规则绑定**：若目标工程根目录存在 `CONSTITUTION.md`，执行阶段（代码编写、重构、审查）必须严格遵循其中的架构红线与技术约束；
+- **优雅平滑降级**：若未检测到 `CONSTITUTION.md`，**绝不中断推演或报错退出**，自动降级至内置通用基准线（如接口零硬编码凭据、单例无状态、集合查询返回空集合、非空卫语句防御）；并在终端提示：`提示：未检测到 CONSTITUTION.md，已启用通用工程底线。建议运行 /at-workflow init 或 /at-constitution 补齐项目宪章。`。
+
+### 10.2 领域词汇零摩擦自适应 (Glossary Adaptation)
+- **权威词汇对齐**：若存在 `docs/glossary.md`，规范制定（`at-spec`）与重构（`at-refactor`）必须 100% 遵循既有专业术语与拼写；
+- **JIT 逆向推断**：若未检测到 `docs/glossary.md`，Agent 自动通过工程现有命名（数据库表名、实体类名 Entity、控制器 Controller 等）逆向推断领域词汇并保持一致，严禁引入语义冲突的新名词。
+
+### 10.3 工件空间即时初始化 (Artifact Directory JIT Provisioning)
+- **按需递归创建**：所有下游技能在写入工件（如 `.specs/<feature-slug>/delta.md`、`tasks.md`、`review.md`）时，若目录不存在，必须由工具直接自动递归创建，严禁要求开发者手动预先创建目录。
+

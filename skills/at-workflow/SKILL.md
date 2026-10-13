@@ -16,7 +16,7 @@ metadata:
 
 # 全生命周期研发工作流总控路由技能 (Master Workflow Orchestrator)
 
-本技能作为全库 31 个 AI Agent 软件工程技能的总控调度中枢，提供开发者意图诊断、远程 Issue 自动联动、标准化流水线配方推荐与会话内内联接力推进。
+本技能作为全库 31 个 AI Agent 软件工程技能的总控调度中枢，提供工程一键初始化脚手架、远程 Issue 自动联动、标准化流水线配方推荐与会话内内联接力推进。
 
 ```mermaid
 flowchart LR
@@ -31,7 +31,7 @@ flowchart LR
 ### 阶段 1：研发诉求探查与 Issue 锚定 (Diagnosis & Issue Binding)
 - 响应 `init` 子命令：探查技术栈并调用脚手架生成目标项目工程治理基座；
 - 响应 `help` / `help <skill>` 子命令，直接渲染标准五段式技能卡片；
-- 识别远程 Issue 编号（`#<id>`）或 URL，调用 CLI（`gh`/`glab`）提取标题正文；无网络时支持本地文本解析；
+- 识别远程 Issue 编号（`#<id>`）或 URL，调用 CLI（`gh`/`glab`）提取标题正文；
 - 探查代码仓库状态、单/多模块拓扑、既有规范文件（`CONSTITUTION.md`、`docs/glossary.md`）与 Git 上下文；
 - 诊断决策树规则参考 [全局工作流总控路由协议](./references/protocols/workflow-routing-protocol.md)。
 
@@ -72,6 +72,7 @@ flowchart LR
 | :--- | :--- | :--- |
 | 总控路由协议 | `./references/protocols/workflow-routing-protocol.md` | 四层金字塔模型、Issue 联动契约、内联推进协议与配方矩阵 |
 | 交互向导模板 | `./references/templates/workflow-menu-template.md` | 场景菜单、阶段确认闸门、状态看板与 Issue 回填摘要模板 |
+| 特性忽略模板 | `./references/templates/specs-gitignore-template.md` | .specs/.gitignore 瞬态工件忽略规则与防污染规范 |
 | 实战案例样本 | `./examples/sample-workflow-orchestration.md` | 基于 Issue #42 的全生命周期 6 大技能会话内内联协同实战全流程 |
 
 ## 交付成果规范 (Deliverables Benchmark)

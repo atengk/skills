@@ -44,10 +44,11 @@ metadata:
 ### 阶段 2：双信源探查与准备 (Standards & Spec Sources Probe)
 
 依据 [dual-axis-review-protocol.md](references/protocols/dual-axis-review-protocol.md) 准备两个轴的真理信源：
-1. **Standards 轴信源准备**：
-   - 索引仓库编码规约（`AGENTS.md`、`CODING_STANDARDS.md`）；
+1. **Standards 轴信源准备与宪章自适应**：
+   - 索引仓库编码规约（`AGENTS.md`、`CODING_STANDARDS.md`）与项目宪章 `CONSTITUTION.md`；
+   - 若未检测到 `CONSTITUTION.md`，平滑降级至内置通用基线与 Fowler 坏味道清单，绝不阻断，友好提示建议补齐；
    - 装载 [code-smell-checklist.md](references/checklists/code-smell-checklist.md) 中的 Fowler 经典坏味道与空安全契约；
-   - 优先服从仓库显式明文规约，仓库规约优于基线坏味道。
+   - 优先服从仓库显式明文规约与宪章。
 2. **Spec 轴信源准备**：
    - 检索关联特性规格（提交信息引用的 Issue `#ID`、`.specs/<feature-slug>/delta.md` 或 RFC 方案）；
    - 若无显式 Spec，在 Spec 轴显式标记为“未提供规格，仅审查自解释意图”。
@@ -70,7 +71,7 @@ metadata:
 依据 [review-report-template.md](references/templates/review-report-template.md) 汇编最终报告：
 1. **双轴并置呈现与落盘**：
    - 严禁加权平均或相互抵消，保持 Standards 与 Spec 双栏独立展示；
-   - 默认将审查报告落盘至特性工件目录 `.specs/<feature-slug>/review.md`（或会话指定交付区），严禁在根目录平铺。
+   - 默认将审查报告落盘至特性工件目录 `.specs/<feature-slug>/review.md`（按需递归自动创建目录），严禁在根目录平铺。
 2. **五轴健康雷达度量**：对契约正确性、可维护性、安全性、性能效率、测试健壮度进行分级打分。
 3. **问题分级与移交裁决**：
    - 明确标注 🔴 Blocker、🟠 Major、🟡 Minor、⚪ Nit；

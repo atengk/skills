@@ -69,6 +69,19 @@ flowchart LR
 /at-workflow help at-tdd
 ```
 
+### 2.3 目标工程一键初始化与 JIT 零摩擦自适应
+在新项目或存量项目中，运行 `/at-workflow init` 即可一键植入标准化工程治理基底：
+
+```bash
+# 目标工程一键初始化（生成 AGENTS.md、CONSTITUTION.md、docs/adr/、docs/glossary.md 及 .specs/）
+/at-workflow init
+```
+
+- **JIT 零摩擦自适应 (Zero-Friction JIT Adaptation)**：
+  - **宪章自适应**：工程存在 `CONSTITUTION.md` 时严格遵循架构红线；若缺失则平滑降级至内置通用基线并提示建议补齐，绝不中断阻断；
+  - **领域词汇自适应**：存在 `docs/glossary.md` 时严格对齐权威术语；若缺失则 JIT 逆向推断现有代码库命名（Entity、Table 等）；
+  - **工件目录自适应**：写入特性工件（`.specs/<feature-slug>/delta.md`、`tasks.md`、`review.md` 等）时按需自动递归创建目录。
+
 ---
 
 ## 3. 场景化实战配方导航 (Cookbook Cards)

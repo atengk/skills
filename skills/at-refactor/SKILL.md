@@ -43,6 +43,10 @@ metadata:
    - 探查存量代码的自动化测试覆盖率，确认既有测试全部处于绿灯状态；
    - 若存量测试薄弱或缺失，优先补充端到端行为特征测试（Characterization Tests），锁定既有正确行为；
    - 严禁在无安全网防护的前提下展开任何破坏性代码重组。
+3. **JIT 零摩擦宪章与领域术语自适应 (Zero-Friction JIT Adaptation)**：
+   - 探查根目录 `CONSTITUTION.md`，若存在严格遵循其架构分层与红线；若缺失则降级至通用底线并友好提示，绝不阻断；
+   - 探查 `docs/glossary.md`，若存在则新模块命名严格对齐既有术语；若缺失则 JIT 逆向推断现有命名；
+   - 重构方案若落盘工件（如 `.specs/<feature-slug>/refactor.md`）按需自动递归创建目录。
 
 ### 阶段 2：深度模块接口与隐藏信息设计 (Deep Module Seam Design)
 

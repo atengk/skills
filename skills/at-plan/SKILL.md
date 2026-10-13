@@ -42,6 +42,10 @@ metadata:
    - 确定微任务必须采用的工程验证命令基线（如单测试方法运行命令）；
    - 扫描当前仓库分支与环境依赖，识别是否存在未满足的环境前置条件；
    - 评估拆解规模：若预估微任务总数超过 10 个，强制划分为多个具备阶段交付物的 Phase。
+3. **JIT 零摩擦治理自适应 (Zero-Friction JIT Adaptation)**：
+   - 探查根目录 `CONSTITUTION.md`，若存在严格将其作为任务拆解约束；若缺失则降级遵循通用工程基线并友好提示，绝不阻断；
+   - 探查 `docs/glossary.md`，统一任务卡片术语；若缺失则 JIT 对齐现有代码命名；
+   - 写入 `.specs/<feature-slug>/tasks.md` 时自动递归创建目录。
 
 ### 阶段 2：示踪线主干划定与 DAG 依赖建模 (Tracer Bullet & DAG Modeling)
 
