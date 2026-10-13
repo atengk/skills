@@ -1,6 +1,9 @@
 ---
 name: at-contributing
 description: 当用户需要为开源或企业级项目制定贡献指南 CONTRIBUTING.md、定义分支协同工作流、确立 Conventional Commits 规范化提交约定、拟定代码审查准则或设置 PR 准入质量核对单时使用此技能。提供项目环境基线抽取、提交规范映射、PR 模板构建与贡献者守则编排，交付清晰严密、无歧义且协作阻力最小的工程贡献体系。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[guide|workflow|conventions]"
 license: Apache-2.0
 metadata:
   author: Ateng

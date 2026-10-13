@@ -1,6 +1,9 @@
 ---
 name: at-plan
 description: 当用户需要将架构方案、需求规格（Spec）或复杂开发任务拆解为可落地执行的工序与任务清单时使用此技能。提供 2~5 分钟极小颗粒度原子微任务编译、DAG 依赖拓扑图谱解析、示踪线（Tracer Bullet）优先推进与断点续做打卡机制，交付标准化任务拆解文档（tasks.md）。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[breakdown|dag|tasks]"
 license: Apache-2.0
 metadata:
   author: Ateng

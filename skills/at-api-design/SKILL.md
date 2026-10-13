@@ -1,6 +1,9 @@
 ---
 name: at-api-design
 description: 当用户需要设计现代 RESTful 接口、拟定 OpenAPI 3.1 接口契约、制定 API-First 规范、定义 RFC 7807 错误码模型、规划接口分页与防重幂等机制或演进版本策略时使用此技能。提供机器可解析的契约骨架与工程设计指南，交付工业级 API 接口契约规范。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[contract|openapi|mock]"
 license: Apache-2.0
 metadata:
   author: Ateng

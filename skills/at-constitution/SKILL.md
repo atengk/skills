@@ -1,6 +1,9 @@
 ---
 name: at-constitution
 description: 当用户需要为工程项目建立顶层技术法典、确立架构刚性红线、拟定不可违背的工程宪章、实施前置熔断守卫或制定技术栈准入白名单时使用此技能。提供多 Agent 协同法律基线，强化全生命周期合规核验，交付可执行的工程宪章与豁免机制。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[init|check|enforce]"
 license: Apache-2.0
 metadata:
   author: Ateng

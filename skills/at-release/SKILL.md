@@ -1,7 +1,7 @@
 ---
 name: at-release
 description: 当用户需要组织生产版本发布、执行上线前起飞检查 (Pre-Flight Checklist)、锁定 SemVer 语义化版本号、合并增量规范至主干规格或归档变更历史时使用此技能。提供现代化安全发版协议与归档模板，交付确定可靠的发布闭环。
-disable-model-invocation: false
+disable-model-invocation: true
 disable-slash-command: false
 argument-hint: "[preflight|semver|archive|tag]"
 allowed-tools:

@@ -1,6 +1,9 @@
 ---
 name: at-performance
 description: 当用户需要排查系统性能瓶颈、压降接口 P95/P99 延时、分析 SQL 执行计划 (EXPLAIN) 与慢查询、根治 N+1 查询反模式、设计高并发多级缓存或调优前端 Core Web Vitals (LCP/INP/CLS) 时使用此技能。提供端到端性能基线摸排、火焰图诊断、执行计划重构与压测对比编排，交付高吞吐、低延时且丝滑流畅的全栈优化成果。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[profile|sql|cache|vitals]"
 license: Apache-2.0
 metadata:
   author: Ateng

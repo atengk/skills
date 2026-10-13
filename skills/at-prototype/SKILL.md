@@ -1,6 +1,9 @@
 ---
 name: at-prototype
 description: 当用户面对复杂状态机分支、模糊交互流、未决架构方案或需要构建快速抛弃型探针以极低成本验证技术假设时使用此技能。提供极简单文件自闭环原型构建、实时状态监视器集成、假设证明与决策反哺编排，交付用完即弃且零污染的探索性验证成果。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[spike|sandbox|poc]"
 license: Apache-2.0
 metadata:
   author: Ateng

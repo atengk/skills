@@ -1,6 +1,9 @@
 ---
 name: at-changelog
 description: 当用户需要从 Git 提交历史自动提取变更日志、维护根目录 CHANGELOG.md、遵循 Keep a Changelog 规范分类 (Added/Changed/Fixed/Security 等)、解析 Conventional Commits 或评估 SemVer 语义化版本号升级时使用此技能。提供 Git 提交增量差分检索、工程杂音过滤、版本递增判定与发布对比超链接生成编排，交付清晰严谨、面向用户的版本演进日志。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[generate|unreleased|preview]"
 license: Apache-2.0
 metadata:
   author: Ateng

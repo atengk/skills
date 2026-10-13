@@ -1,7 +1,7 @@
 ---
 name: at-observability
 description: 当用户需要设计生产级系统可观测性方案、制定 Prometheus 指标与 RED/USE 监控模型、统一结构化日志规范、集成分布式链路追踪或配置容器健康探针时使用此技能。提供现代化可观测性设计协议与埋点模板，交付透明可靠的监控运维体系。
-disable-model-invocation: false
+disable-model-invocation: true
 disable-slash-command: false
 argument-hint: "[metrics|tracing|logging|health]"
 allowed-tools:

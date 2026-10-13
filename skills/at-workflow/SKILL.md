@@ -1,9 +1,9 @@
 ---
 name: at-workflow
 description: 当用户面对复杂工程任务不确定如何推进、需要全生命周期研发向导、诊断当前场景最佳技能路线或需要智能调度串联多技能时使用此技能。提供全局工作流路由协议与交互菜单模板，交付无缝衔接的端到端研发编排体验。
-disable-model-invocation: false
+disable-model-invocation: true
 disable-slash-command: false
-argument-hint: "[guide|menu|recipe|help [skill]|orchestrate]"
+argument-hint: "[init|#<issue-id>|recipe <id>|help [skill]|menu]"
 allowed-tools:
   - view_file
   - run_command

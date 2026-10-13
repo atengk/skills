@@ -1,7 +1,7 @@
 ---
 name: at-retro
 description: 当用户需要组织故障复盘分析、编写事后无指责报告 (Postmortem)、应用 5 Whys 溯源分析根因、反思工程测试防线或制定整改行动项 (Action Items) 时使用此技能。提供现代化复盘协议与报告模板，交付可持续演进的系统防腐机制。
-disable-model-invocation: false
+disable-model-invocation: true
 disable-slash-command: false
 argument-hint: "[postmortem|5whys|incident|actions]"
 allowed-tools:

@@ -1,6 +1,9 @@
 ---
 name: at-tdd
 description: 当用户需要通过测试驱动开发（TDD）实现新功能、修复缺陷、实施红-绿-重构循环、拦截假通过测试或执行突变检验时使用此技能。提供未测先写立即删代码铁律、测试先行红灯验证、最小实现绿灯与突变敏感度反思，交付生产级健壮源码与自验证测试套件。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[red|green|refactor|mutation]"
 license: Apache-2.0
 metadata:
   author: Ateng

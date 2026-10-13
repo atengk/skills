@@ -1,7 +1,7 @@
 ---
 name: at-ci
 description: 当用户需要配置持续集成流水线、编写 GitHub Actions 工作流、集成代码质量门禁或设计自动化构建与发布流水线时使用此技能。提供现代化 CI/CD 流水线模板与门禁校验，交付稳定可靠的集成体系。
-disable-model-invocation: false
+disable-model-invocation: true
 disable-slash-command: false
 argument-hint: "[workflow|lint|gate]"
 allowed-tools:

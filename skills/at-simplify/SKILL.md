@@ -1,6 +1,9 @@
 ---
 name: at-simplify
 description: 当用户面对深层条件嵌套、箭头反模式、过度工程设计、单实现伪抽象、晦涩复合布尔逻辑或需要对既有代码进行可读性极致精简时使用此技能。提供卫语句倒置重构、控制流扁平化、消除冗余间接层与等价性验证编排，交付心智负担最低、清晰度最高的干净代码。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[clean|flatten|prune]"
 license: Apache-2.0
 metadata:
   author: Ateng

@@ -1,6 +1,9 @@
 ---
 name: at-review
 description: 当用户需要对代码变更（Git Diff、PR、分支或特性提交）进行全面质量审查、检查规范违规与代码坏味道、核验需求规格（Spec）契约完成度或评估五轴健康度时使用此技能。提供 Standards 与 Spec 双轴并行隔离审查、Fowler 坏味道基线体检与五轴健康雷达评估，交付结构化双轴审查报告。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[dual-axis|spec|standards]"
 license: Apache-2.0
 metadata:
   author: Ateng

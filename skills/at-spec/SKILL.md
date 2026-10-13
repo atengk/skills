@@ -1,6 +1,9 @@
 ---
 name: at-spec
 description: 当用户需要对存量系统或新功能拟定增量规格契约（Delta Specs）、定义接口增量契约、声明系统不变式（Invariants）或防止文档脱节膨胀时使用此技能。提供 OpenSpec 差分规格模型、500 字符原子防膨胀守卫与可测试性契约生成，交付标准化机器可读规格文件。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[delta|contract|invariants]"
 license: Apache-2.0
 metadata:
   author: Ateng

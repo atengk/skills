@@ -1,6 +1,9 @@
 ---
 name: at-glossary
 description: 当用户需要为工程项目建立、维护、查询或校验领域统一语言（GLOSSARY.md）、消除跨角色术语歧义、对齐代码实体与业务概念命名或大幅降低多轮沟通 Token 开销时使用此技能。提供 DDD 统一语言提炼、模糊重载词阻断纠偏、代码类与枚举一致性扫描，交付结构化领域字典资产。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[init|add [term]|check]"
 license: Apache-2.0
 metadata:
   author: Ateng

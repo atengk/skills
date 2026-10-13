@@ -1,6 +1,9 @@
 ---
 name: at-grill
 description: 当用户需要对架构方案、业务需求、技术选型或重大决策进行反向压迫式质询与压力测试时使用此技能。提供苏格拉底式发掘、设计树前沿分轮质询、事实自动探查与构建者视角反审（Builder Check），交付收敛完备的共识决策树与权衡清单。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[interview|stress-test|builder-check]"
 license: Apache-2.0
 metadata:
   author: Ateng

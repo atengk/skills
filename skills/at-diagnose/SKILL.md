@@ -1,6 +1,9 @@
 ---
 name: at-diagnose
 description: 当用户遇到疑难 Bug、偶发并发缺陷、报错异常堆栈、性能劣化或需要系统化排查定位根因时使用此技能。提供紧反馈循环构建（Tight Loop）、最小化复现（Minimization）、可证伪假设验证、带标探针隔离与纵深防御修复，交付根因诊断报告与永久回归测试。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[reproduce|trace|fix|verify]"
 license: Apache-2.0
 metadata:
   author: Ateng

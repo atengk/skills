@@ -1,6 +1,9 @@
 ---
 name: at-security
 description: 当用户需要排查代码安全漏洞、审查 OWASP Top 10 威胁、防御 SQL/NoSQL 注入与 XSS、拦截越权访问 (IDOR)、治理硬编码明文机密或实施防御式编程加固时使用此技能。提供威胁建模扫描、参数化防注入改造、权限租户隔离与依赖供应链合规编排，交付零明文、高韧性且纵深防御的安全代码。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[audit|owasp|secrets]"
 license: Apache-2.0
 metadata:
   author: Ateng

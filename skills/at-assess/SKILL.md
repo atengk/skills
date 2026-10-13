@@ -1,6 +1,9 @@
 ---
 name: at-assess
 description: 当用户需要对新功能创意、技术改造提案、第三方依赖引入或重大架构变更开展可行性预研与技术 Spike 评估时使用此技能。提供代码基线核验、五维风险量化评估（可行性/复杂度/安全/运维/ROI）与证据驱动的 Go / Clarify / Stop 明确裁决，交付标准化可行性评估报告。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[spike|feasibility|tech-stack]"
 license: Apache-2.0
 metadata:
   author: Ateng

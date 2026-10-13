@@ -1,6 +1,9 @@
 ---
 name: at-frontend
 description: 当用户需要设计现代前端 UI 组件架构、拆分展示与容器组件、消除多布尔状态爆炸、实现受控组件模式、落实 Web 无障碍访问 (a11y / WCAG 2.1 AA) 或规整设计 Token 与响应式适配时使用此技能。提供组件分层拓扑切分、状态机驱动建模、焦点捕获与键盘导航加固编排，交付高复用、高可测且包容普适的前端工程成果。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[component|state|a11y|style]"
 license: Apache-2.0
 metadata:
   author: Ateng

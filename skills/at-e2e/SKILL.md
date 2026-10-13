@@ -1,7 +1,7 @@
 ---
 name: at-e2e
 description: 当用户需要设计端到端自动化测试、编写 Playwright 或 Cypress 验收脚本、执行核心用户旅程冒烟测试或通过浏览器探针验证 UI 与网络接口联调时使用此技能。提供现代化 E2E 验收协议与套件模板，交付高确定性全链路质量保证。
-disable-model-invocation: false
+disable-model-invocation: true
 disable-slash-command: false
 argument-hint: "[journey|playwright|smoke]"
 allowed-tools:

@@ -1,6 +1,9 @@
 ---
 name: at-readme
 description: 当用户需要为代码仓库编写、重构或持续同步项目核心门户 README.md、提炼项目价值主张、集成状态徽标 (Badges)、梳理架构拓扑图、编写开箱即用快速上手指南或规整目录配置字典时使用此技能。提供代码库特征扫描、模块拓扑抽取、极简快速启动验证与文档死链门禁编排，交付高清晰度、低心智负担且现代美观的工业级项目门户。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[generate|sync|audit]"
 license: Apache-2.0
 metadata:
   author: Ateng

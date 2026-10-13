@@ -1,7 +1,7 @@
 ---
 name: at-handoff
 description: 当会话即将超出上下文窗口、切换协作 Agent、从设计阶段转入编码阶段或需要跨会话无损保存当前断点现场与待办任务时使用此技能。提供深度上下文压缩协议与交接棒模板，交付高连续性长时自治协作体验。
-disable-model-invocation: false
+disable-model-invocation: true
 disable-slash-command: false
 argument-hint: "[handoff|compact|context|resume]"
 allowed-tools:

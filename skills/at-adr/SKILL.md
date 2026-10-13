@@ -1,6 +1,9 @@
 ---
 name: at-adr
 description: 当用户需要记录重大架构决策、治理 ADR 生命周期、对比评估多种技术路线方案、权衡正负利弊与 Trade-off 或回溯纳管技术债务时使用此技能。提供 MADR 3.0 标准化流程与全生命周期状态机管理，交付工业级架构决策记录（ADR）。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[new|list|review|deprecate]"
 license: Apache-2.0
 metadata:
   author: Ateng

@@ -1,6 +1,9 @@
 ---
 name: at-worktree
 description: 当用户需要利用 Git Worktree 进行物理级独立环境隔离、并发开发新特性、进行破坏性试验或切出紧急热修以防污染当前工作区时使用此技能。提供跨平台工作树创建、环境依赖初始化、测试基线绿灯核验与安全清理闭环编排，交付零污染、物理隔离且自闭环的工程工作空间。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[create [branch]|clean|list]"
 license: Apache-2.0
 metadata:
   author: Ateng

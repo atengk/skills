@@ -1,7 +1,7 @@
 ---
 name: at-rules
 description: 当用户需要制定 AI 编程助手规范、初始化 AGENTS.md 行为准则、设计多智能体系统提示词或统一上下文治理规约时使用此技能。提供跨模型规约脚手架与自动化校验支持，交付高清晰度工程规则系统。
-disable-model-invocation: false
+disable-model-invocation: true
 disable-slash-command: false
 argument-hint: "[init|check|export]"
 allowed-tools:

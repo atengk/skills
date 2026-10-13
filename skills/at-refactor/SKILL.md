@@ -1,6 +1,9 @@
 ---
 name: at-refactor
 description: 当用户需要治理系统架构坏味道、剥离历史上帝类、设计深度模块接口、消除依恋情结与散弹式修改、防范代码过度碎片化或实施受控微重构时使用此技能。提供深度模块设计哲学与双安全网微步进工序编排，交付高内聚、低耦合且最小爆炸半径的重构落地成果。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[extract|decouple|simplify]"
 license: Apache-2.0
 metadata:
   author: Ateng

@@ -1,6 +1,9 @@
 ---
 name: at-runbook
 description: 当用户需要为生产服务编写或更新运维应急手册 Runbook、制定突发故障响应预案、梳理核心黄金指标告警排查路径、沉淀高并发止血 SOP (回滚/降级/限流/扩容) 或规整运维故障自愈步骤时使用此技能。提供故障等级评估、先止血后排障决策树构建、线程日志现场抓取与恢复验收编排，交付标准化、步骤可复制且 10 分钟止血的工业级应急手册。
+disable-model-invocation: true
+disable-slash-command: false
+argument-hint: "[incident|sop|recovery]"
 license: Apache-2.0
 metadata:
   author: Ateng
