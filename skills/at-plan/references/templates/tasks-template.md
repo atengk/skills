@@ -1,6 +1,6 @@
 # 极小颗粒度原子微任务清单模板 (Tasks Template)
 
-本文档定义了 `at-plan` 技能生成的开发实施任务清单（默认落盘为 `tasks.md` 或 `.plans/<feature-id>-tasks.md`）标准结构。
+本文档定义了 `at-plan` 技能生成的开发实施任务清单（统一落盘为 `.specs/<feature-slug>/tasks.md`，严禁在工程根目录平铺）标准结构。
 
 ---
 
@@ -17,7 +17,7 @@
 ```markdown
 # 实施任务清单：{特性简明标题} (Implementation Tasks)
 
-> **关联契约**：[spec-delta.md](./spec-delta.md)
+> **关联契约**：[delta.md](./delta.md)
 > **基线环境**：{开发环境技术栈与测试工具}
 > **总任务数**：{N} 个原子微任务（单任务耗时估算 2~5 分钟）
 > **生成时间**：{YYYY-MM-DD}

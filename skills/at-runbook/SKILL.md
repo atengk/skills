@@ -74,7 +74,7 @@ metadata:
    - 罗列事故后 24 小时内的 5 Whys 复盘与长效防范改进要求；
    - 将排错经验转化为常态化混沌工程巡检探针与定期桌面推演（Tabletop Exercise）。
 2. **手册落盘与工作区留置**：
-   - 基于 [runbook-template.md](references/templates/runbook-template.md) 生成文档落盘至 `docs/runbook/<incident-type>.md`；
+   - 基于 [runbook-template.md](references/templates/runbook-template.md) 生成文档统一落盘至长期知识资产目录 `docs/runbooks/XXXX-title.md`；
    - 执行盘古之白排版规范核验，全文档 100% 杜绝本地绝对路径；
    - 成果保留在工作区等待人类审查，未获显式指令绝不擅自提交；
    - 破除面对黑天鹅事件时的慌乱摸索，将经验转化为肌肉记忆；

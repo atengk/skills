@@ -12,7 +12,8 @@
 - [5. 空安全、并发与事务契约](#5-空安全并发与事务契约)
 - [6. 安全合规与零明文凭据底线](#6-安全合规与零明文凭据底线)
 - [7. 运维观测性与日志标准](#7-运维观测性与日志标准)
-- [8. 特批豁免与 ADR 登记流程](#8-特批豁免与-adr-登记流程)
+- [8. 文档资产拓扑与双层命名法则](#8-文档资产拓扑与双层命名法则)
+- [9. 特批豁免与 ADR 登记流程](#9-特批豁免与-adr-登记流程)
 
 ---
 
@@ -109,7 +110,22 @@ flowchart TD
 
 ---
 
-## 8. 特批豁免与 ADR 登记流程
+## 8. 文档资产拓扑与双层命名法则
+
+保障工程知识库与特性过程资产的自闭环演进，防范仓库根目录被临时文件污染：
+
+- **双层命名法则 (Two-Tier Naming Convention)**：
+  - 项目根目录顶层门面一律全大写：`AGENTS.md`、`CONSTITUTION.md`、`README.md`、`CHANGELOG.md`、`CONTRIBUTING.md`、`LICENSE`；
+  - 所有子目录与工件文件一律使用小写连字符 kebab-case（如 `docs/architecture/`、`docs/rfcs/`、`docs/adr/`、`docs/spikes/`、`docs/retros/`、`docs/runbooks/`、`docs/glossary.md`）；
+- **根目录零临时平铺与特性工件闭环**：
+  - 严禁在项目根目录下平铺临时特性文件（如 `spec-delta.md`、`tasks.md`、`review-report.md`、`api-contract.md`）；
+  - 特性研发全过程工件统一收敛于 `.specs/<feature-slug>/` 目录（包含 `delta.md`、`tasks.md`、`review.md`、`api.yaml`、`HANDOFF.md`）；
+- **瞬态资产与 Git 忽略隔离**：
+  - 项目根目录 `.gitignore` 必须声明忽略跨会话交接瞬态文件与临时目录：`**/HANDOFF.md`、`scratch/`、`**/*.tmp.md`。
+
+---
+
+## 9. 特批豁免与 ADR 登记流程
 
 当项目遇到不可抗力或特殊临时场景确需违背本宪章时，必须服从以下刚性审批流程：
 

@@ -53,7 +53,7 @@ flowchart LR
 - 模板骨架参考 [跨 Agent 交接棒文档模板](./references/templates/handoff-document-template.md)。
 
 ### 阶段 5：交接棒文档持久化与自检交付 (Persistence & Handoff Delivery)
-- 将交接内容持久化写入受管交接文件（如 `HANDOFF.md`）；
+- 将交接内容持久化写入特性工件目录 `.specs/<feature-slug>/HANDOFF.md`（并在项目 `.gitignore` 中声明忽略 `**/HANDOFF.md` 防范瞬态污染）；
 - 严格审计交接文档，确保零真实机密泄漏，凭据均采用占位符；
 - 校验文档盘古之白排版规范与相对路径引用的工程合规性。
 
@@ -73,7 +73,7 @@ flowchart LR
 | 实战案例样本 | `./examples/sample-handoff.md` | 任务调度系统从设计转入编码阶段的真实交接棒样例 |
 
 ## 交付成果规范 (Deliverables Benchmark)
-- **交接棒核心文档**：格式标准、信息结构化的 `HANDOFF.md` 文件；
+- **交接棒核心文档**：格式标准、信息结构化的 `HANDOFF.md` 文件（位于 `.specs/<feature-slug>/HANDOFF.md`）；
 - **排他性决策清单**：包含正反论证、防止重踩弯路的架构共识备忘录；
 - **断点现场描述表**：包含活动分支、暂存修改与断点代码锚点的上下文快照；
 - **优先级待办矩阵**：按依赖关系拓扑编排的后续行动项与验收标准；

@@ -43,7 +43,7 @@ flowchart TD
     Start["输入变更需求"] --> BaselineProbe["探查代码库基线 (方法签名/实体/配置)"]
     BaselineProbe --> DeltaExtract["提取三元差分契约 (Added / Modified / Removed)"]
     DeltaExtract --> GuardCheck["执行 500 字符防膨胀守卫与不变式提炼"]
-    GuardCheck --> WriteFile["落盘 spec-delta.md 增量规格文件"]
+    GuardCheck --> WriteFile["落盘 .specs/<feature-slug>/delta.md 增量规格文件"]
     WriteFile --> HumanGate["强制交出控制权，展示链接并等待用户审阅"]
     HumanGate --> Approved{"用户是否确认？"}
     Approved -- 有修改意见 --> EditSpec["就地修订规格"] --> HumanGate
@@ -63,7 +63,7 @@ flowchart TD
 ## 5. 交付物与下一步推荐 (Deliverables & Next Steps)
 
 ### 核心交付物
-- **`spec-delta.md`（或 `.specs/<feature-id>-delta.md`）**：机器与人类双重可读的增量规格契约文件，内含元数据头、Delta 矩阵、系统不变式与故障域表格。
+- **`.specs/<feature-slug>/delta.md`**：机器与人类双重可读的增量规格契约文件，内含元数据头、Delta 矩阵、系统不变式与故障域表格。
 
 ### 下一步工程流转
 - **进入工序与微任务拆解**：直接调用 `at-plan` 技能，将每个原子 Delta 编译为 2~5 分钟的微任务清单；

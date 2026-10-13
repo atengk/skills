@@ -1,6 +1,6 @@
 # 统一语言术语字典模板 (Glossary Template)
 
-本文档定义了 `at-glossary` 技能在项目根目录生成与维护的 `GLOSSARY.md` 标准文件结构。
+本文档定义了 `at-glossary` 技能在工程生成与维护的领域字典（统一写入 `docs/glossary.md`，或工程顶层门面 `GLOSSARY.md`）标准文件结构。
 
 ---
 

@@ -45,7 +45,7 @@ flowchart TD
     Spec --> Guard["规划分布式幂等键、分页与防重机制"]
     Guard --> Review{"呈现 API 契约并等待人类审阅"}
     Review -- 微调参数与命名 --> Spec
-    Review -- 确认定稿 --> Persist["落盘 api-contract.md 或 openapi.yaml"]
+    Review -- 确认定稿 --> Persist["落盘 .specs/<feature-slug>/api.yaml"]
     Persist --> Handoff["输入 Mock 服务引擎与 at-spec / at-tdd"]
 ```
 
@@ -61,7 +61,7 @@ flowchart TD
 ## 5. 交付产物与标准 (Outputs & Standards)
 
 执行完毕后交付以下标准化产物：
-- **API 契约主文档**：`api-contract.md`（或 `openapi.yaml`）；
+- **API 契约主文档**：`.specs/<feature-slug>/api.yaml`（全局服务契约写入 `docs/api/<service-name>.yaml`）；
 - **OpenAPI 3.1 结构化规格**：可直接导入 Swagger/Apipost/Prism 启动 Mock 与自动化契约测试；
 - **RFC 7807 错误码字典**：业务语义明确的错误映射表；
 - **下游工程输入**：无缝驱动 `at-spec`（Given-When-Then 规格）与 `at-tdd`（自动化端到端测试用例）。

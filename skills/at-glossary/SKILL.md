@@ -1,6 +1,6 @@
 ---
 name: at-glossary
-description: 当用户需要为工程项目建立、维护、查询或校验领域统一语言（GLOSSARY.md）、消除跨角色术语歧义、对齐代码实体与业务概念命名或大幅降低多轮沟通 Token 开销时使用此技能。提供 DDD 统一语言提炼、模糊重载词阻断纠偏、代码类与枚举一致性扫描，交付结构化领域字典资产。
+description: 当用户需要为工程项目建立、维护、查询或校验领域统一语言（docs/glossary.md）、消除跨角色术语歧义、对齐代码实体与业务概念命名或大幅降低多轮沟通 Token 开销时使用此技能。提供 DDD 统一语言提炼、模糊重载词阻断纠偏、代码类与枚举一致性扫描，交付结构化领域字典资产。
 disable-model-invocation: true
 disable-slash-command: false
 argument-hint: "[init|add [term]|check]"
@@ -18,7 +18,7 @@ metadata:
 
 # 领域统一语言编排器 (Ubiquitous Language Orchestrator)
 
-在工程根目录建立并动态维护唯一的领域通用字典（`GLOSSARY.md`），消弭“同词不同义”或“同义不同词”的语义污染。作为轻量化状态机运行，主动拦截口语化模糊表达，将业务概念、不变式规则与代码中的 Entity/Enum 强制对齐，显著削减 Agent 沟通冗余与上下文 Token 损耗。
+在工程长期知识库建立并动态维护唯一的领域通用字典（`docs/glossary.md`，或根目录顶层门面 `GLOSSARY.md`），消弭“同词不同义”或“同义不同词”的语义污染。作为轻量化状态机运行，主动拦截口语化模糊表达，将业务概念、不变式规则与代码中的 Entity/Enum 强制对齐，显著削减 Agent 沟通冗余与上下文 Token 损耗。
 
 ## 渐进式知识地图 (Progressive Disclosure Map)
 
@@ -33,8 +33,8 @@ metadata:
 
 ### 阶段 1：语境侦测与术语资产索引 (Context Detection & Glossary Indexing)
 
-1. **根目录字典真理探查**：
-   - 自动检测根目录是否存在 `GLOSSARY.md`（或模块内 `docs/glossary.md`）；
+1. **统一语言字典真理探查**：
+   - 自动检测工程是否存在 `docs/glossary.md`（或顶层门面 `GLOSSARY.md`）；
    - 若根目录存在 `CONTEXT-MAP.md`，依据上下文地图路由至各微服务子域字典；
    - 若已存在字典，立即索引既有术语定义与代码映射，作为本轮会话的唯一真理词汇源；
    - 若不存在，依据 [glossary-template.md](references/templates/glossary-template.md) 懒加载初始化字典骨架。
@@ -42,7 +42,6 @@ metadata:
    - 识别当前需求涉及的核心子域（如支付结算、仓配履约、用户鉴权）；
    - 明确术语的适用边界，防止跨子域概念强行混同；
    - 标定子域间防腐层（ACL）与术语映射关系。
-
 
 ### 阶段 2：模糊概念拦截与术语消歧锐化 (Ambiguity Interception & Sharpening)
 
@@ -69,15 +68,13 @@ metadata:
 ### 阶段 4：增量落盘维护与规范移交 (Inline Update & Pipeline Handoff)
 
 1. **字典增量持久化落盘与审阅闸门**：
-   - 新概念一旦达成共识，立即就地增量写入 `GLOSSARY.md`，严禁滞后批量积压；
+   - 新概念一旦达成共识，立即就地增量写入 `docs/glossary.md`（或 `GLOSSARY.md`），严禁滞后批量积压；
    - 保持字典纯粹性：严格剔除底层数据库索引、中间件连接等技术实现细节；
    - **人机确认机制**：向用户展示新增或变更词条卡片，等待人类用户审阅确认；
    - 严格遵循盘古之白排版规范，全文档杜绝任何 `file:///` 或本地物理盘符泄漏。
 2. **下游研发链路移交**：
-   - 移交 `at-spec`：要求增量规格书直接引用 `GLOSSARY.md` 法定术语；
+   - 移交 `at-spec`：要求增量规格书直接引用统一领域字典法定术语；
    - 移交 `at-tdd`：测试方法名与断言语义直接遵循统一语言命名规范；
    - 形成高凝聚力领域资产，赋能后续会话免除重复沟通解释；
    - 沉淀高价值无形资产，保障领域架构代际传承；
    - 筑牢业务建模基石，守护软件工程通用语义防腐层。
-
-

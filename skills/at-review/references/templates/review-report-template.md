@@ -1,6 +1,6 @@
 # 代码双轴审查报告模板 (Review Report Template)
 
-本文档定义了 `at-review` 技能输出的代码审查报告（默认呈现于会话或落盘为 `review-report.md`）标准结构。
+本文档定义了 `at-review` 技能输出的代码审查报告（默认呈现于会话或落盘为 `.specs/<feature-slug>/review.md`，严禁在工程根目录平铺）标准结构。
 
 ---
 
@@ -21,7 +21,7 @@
 > **审查锚点**：`{fixed-point}` ... `HEAD`
 > **涉及提交**：{N} 个 Commits
 > **改动规模**：{X} 文件变更，+{Y} 行插入，-{Z} 行删除
-> **关联契约**：[spec-delta.md](./spec-delta.md)
+> **关联契约**：[delta.md](./delta.md)
 > **审查时间**：{YYYY-MM-DD}
 ```
 

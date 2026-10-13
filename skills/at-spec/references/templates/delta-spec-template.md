@@ -1,6 +1,6 @@
 # 增量规格契约交付模板 (Delta Spec Template)
 
-本文档定义了 `at-spec` 技能生成的增量规格文件（默认命名为 `spec-delta.md` 或 `.specs/<feature-id>-delta.md`）标准结构。
+本文档定义了 `at-spec` 技能生成的增量规格文件（统一持久化至 `.specs/<feature-slug>/delta.md`，严禁在工程根目录平铺）标准结构。
 
 ---
 

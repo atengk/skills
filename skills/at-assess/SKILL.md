@@ -65,7 +65,7 @@ metadata:
 
 依据 [assess-report-template.md](references/templates/assess-report-template.md) 落地最终成果：
 1. **交付物落盘与审阅闸门**：
-   - 默认将评估报告呈现于会话或落盘为 `feasibility-assessment.md`；
+   - 统一将评估报告落盘至长期知识资产目录 `docs/spikes/XXXX-title.md`（或呈现于会话），严禁在根目录平铺；
    - **强制停止工具调用**：向用户展示五维打分卡与裁决结论，提供直达链接，等待用户审阅确认；
    - 若用户对评估结论存疑，就地展开单项证据复验或调整五维权重参数；
    - 严格遵循盘古之白排版规范，全文档杜绝任何 `file:///` 或本地物理盘符泄漏。

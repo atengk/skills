@@ -59,6 +59,10 @@ metadata:
 4. **安全合规与零凭据红线**：
    - 代码、配置与文档中严禁任何明文密码、API Token 或物理绝对路径泄漏；
    - 所有凭据必须通过系统环境变量或受管 KMS/配置中心注入。
+5. **文档资产拓扑与双层命名法则**：
+   - 顶层门面全大写（`AGENTS.md`、`CONSTITUTION.md` 等），子目录与过程工件全小写 kebab-case；
+   - 过程工件统一收敛至 `.specs/<feature-slug>/`，长期资产统一收敛至 `docs/`，严禁根目录平铺；
+   - 项目 `.gitignore` 必须声明忽略 `**/HANDOFF.md`、`scratch/` 与 `**/*.tmp.md`。
 
 ### 阶段 3：人机评审与熔断守卫确认 (Review & Circuit Breaker Setup)
 

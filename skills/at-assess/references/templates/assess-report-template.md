@@ -1,6 +1,6 @@
 # 技术方案可行性评估报告模板 (Assess Report Template)
 
-本文档定义了 `at-assess` 技能生成的方案预研与可行性评估报告（默认呈现于会话或落盘为 `feasibility-assessment.md`）标准结构。
+本文档定义了 `at-assess` 技能生成的方案预研与可行性评估报告（统一落盘为 `docs/spikes/XXXX-title.md`，严禁在工程根目录平铺）标准结构。
 
 ---
 

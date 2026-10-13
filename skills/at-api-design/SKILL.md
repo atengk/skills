@@ -67,7 +67,7 @@ metadata:
    - 开展兼容性静态比对，确认未破坏存量既有调用方的字段依赖；
    - 若用户指出字段缺失或命名分歧，就地修订并重申领域一致性；
    - 确保正文严格遵循盘古之白排版规范，全文档杜绝任何 `file:///` 或本地物理盘符泄漏。
-2. **标准化资产落盘**：默认落盘为 `api-contract.md`（或 `openapi.yaml`）。
+2. **标准化资产落盘**：特性级契约统一写入 `.specs/<feature-slug>/api.yaml`（全局服务契约写入 `docs/api/<service-name>.yaml`），严禁在工程根目录平铺。
 
 ### 阶段 4：研发工具链打通与下游移交 (Toolchain Integration & Handoff)
 

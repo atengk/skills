@@ -79,5 +79,5 @@ quadrantChart
 
 ## 5. 状态持久化与落盘位置规范
 
-- 统一将交接文件落盘于受管 Artifact 目录或用户指定的位置（如 `HANDOFF.md`）；
+- 统一将交接文件落盘于特性工件目录 `.specs/<feature-slug>/HANDOFF.md`（或受管 Artifact 目录），并在项目 `.gitignore` 中声明忽略 `**/HANDOFF.md`，防范瞬态交接文档污染主干代码库；
 - 严禁将包含真实机密（数据库密码、Token）写入交接文档，凭据一律使用环境变量占位符。
